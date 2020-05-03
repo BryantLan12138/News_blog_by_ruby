@@ -19,7 +19,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_HOST: "host.docker.internal"
+      DATABASE_HOST: "db"
       DATABASE_USERNAME: "admin"
       DATABASE_PASSWORD: "password"
       DATABASE_PORT: 5432
