@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'pg', '>= 0.18', '< 2.0'
-
+gem 'rails-controller-testing'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
