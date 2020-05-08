@@ -1,6 +1,6 @@
 <% provide(:title, "Log in") %> 
 <h1>Log in</h1>
-#create session to store user's input
+
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <%= form_with(url: login_path, scope: :session, local: true) do |f| %> 
@@ -14,6 +14,6 @@
             <%= f.submit "Log in", class: "btn btn-primary" %>
         <% end %>
 
-        <p>New user? <%= link_to "Sign up now!", signup_path %></p> #for the convinence of user to sign up easier 
+        <p>New user? <%= link_to "Sign up now!", signup_path %></p> 
     </div>
 </div>
