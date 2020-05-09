@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    
   end
 
   def new
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Congratulations! You have Successfully signed up to News+"
+      flash[:success] = "Successfully created account - #{@user.name}"
       redirect_to @user
     else
       render 'new'
@@ -21,8 +22,10 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
 end
+
+
+# User.new(name: "Daniel", email: "daniel@example.com", password: "foobar", password_confirmation: "foobar").save
