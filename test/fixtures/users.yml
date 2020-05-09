@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# daniel:
-#   name: MyString
-#   email: MyString
-
 michael:
   name: Michael Example
   email: michael@example.com
