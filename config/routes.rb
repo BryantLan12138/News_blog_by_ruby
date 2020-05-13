@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root  'static_pages#home'
   get   'sessions/new'
   get   'users/new'
-  
+  get   'users/index'
 
   get   '/news',    to: 'static_pages#news'
   get   '/signup', to: 'users#new'
