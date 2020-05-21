@@ -17,4 +17,5 @@
     <%= f.text_field :phone, class: 'form-control', placeholder:"Enter your mobile number" %><br>
 
     <%= f.submit yield(:button_text), class: "btn btn-primary" %> 
+    <p><%= link_to "Already a user?", login_path %></p>
 <% end %>
