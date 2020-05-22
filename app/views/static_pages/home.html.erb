@@ -4,10 +4,27 @@
     <title><%= yield(:title) %></title>
   </head>
   <body>
-    <h1>Home</h1>
-    <p>
-      This is the home page
-      <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-    </p>
+
+    <div class="container">
+      <nav>
+        <ul class="nav navbar-nav my-auto home-nav">
+          <li><%= link_to "Recent Post", "#" %></li>
+          <li><%= link_to "Selected Post", "#"%></li> 
+          <% if logged_in? %>
+            <li><%= link_to "My Settings",   edit_user_url(current_user.id) %></li>
+          <% end %>
+          <li><input type="text" class="form-control search" placeholder="search..." name="topicSearch"> </li>  
+          <li><%= link_to "New Post", "#", class: "new_post" %></li>
+        </ul>
+      </nav>
+    </div>
+
+    <%= render 'layouts/home_post_summary' %>
+    <%= render 'layouts/home_post_summary' %>
+    <%= render 'layouts/home_post_summary' %>
+    <%= render 'layouts/home_post_summary' %>
+    <%= render 'layouts/home_post_summary' %>
+    <%= render 'layouts/links' %>
+
   </body>
 </html>

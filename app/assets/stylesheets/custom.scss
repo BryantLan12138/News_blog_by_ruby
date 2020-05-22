@@ -71,7 +71,8 @@ p {
 footer {
     margin-top: 45px;
     padding-top: 5px;
-    border-top: 1pxsolid#eaeaea;
+    border-top: 1px solid#eaeaea;
+    background-color: black;
     color: #777;
 }
 footer a {
@@ -145,8 +146,8 @@ aside {
 
 
 .dropdown-toggle img {
-    width: 25px;
-    height: 25px
+    width: 20px;
+    height: 20px
 }
 
 .gravatar_edit {
@@ -197,3 +198,109 @@ input {
     width: auto;
     margin-left: 0;
   }
+  .navbar {
+      height: 50px;
+  }
+  .form-inline {
+    height: 40px
+    }
+  .navbar-nav {
+      height: 50px;
+      .nav-link{
+
+        padding: .5em 1em;
+      }
+      .nav-item {
+        margin-top: .5em;
+        list-style-type: none;
+        :hover {
+            color: #E4572E;
+            text-decoration: none;
+        }
+
+      }
+  }
+
+  .home-nav {
+      width: 100%;
+      margin-bottom: 3em;
+      a {
+        color: #656969;
+      }
+
+      .search {
+          width: 100%;
+          margin: .5em 0 0 4em;
+      }
+      .new_post {
+          margin-left: 6em;
+          background-color: #1E555C;
+          border-radius: 3px;
+          color: #FFFFFF;
+          :hover {
+              background-color: #30666C;
+          }
+      }
+
+      :hover {
+          color: #FF521B;
+      }
+  }
+.post_summary {
+    display: flex;
+    height: 100px;
+    border-bottom: 1px #e6e6e6 solid;
+    width: 800px;
+    .psum {
+        flex-basis: 0;
+        margin: auto;
+    }
+
+    .post-img {
+        height: 90px;
+        width: 90px;
+        border-radius: 2px;
+        margin: auto 0;
+    }
+
+    .post-detail {
+        width: 500px;
+        .post-det {
+            width: 70%;
+            span {
+                width: 10%;
+                padding: .5em 1em .5em 2em;
+            }
+        }
+        .container {
+            .row {
+                height: 45px;
+                padding-left: 2em; 
+            }
+            .post-head {
+                padding-left: 3.5em;
+                font-size: 1.1em;
+                font-weight: bold;
+                :hover {
+                    color: #FF521B;
+                }
+            }
+        }
+    }
+
+    .post-social {
+        width: 80px;
+    }
+}
+
+.postList a {
+    margin: .5em;
+    border-radius: 3px;
+    background-color: #7A28CB;
+    padding: 1em;
+    width: 120px;
+}
+
+.badge:hover {
+    background-color: #4918A2;
+}
