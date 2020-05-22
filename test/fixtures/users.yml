@@ -5,6 +5,7 @@ michael:
   email: michael@example.com
   phone: "123456123456"
   password_digest: <%= User.digest('password') %>
+  admin: true
   
 
 # # Daniel:
