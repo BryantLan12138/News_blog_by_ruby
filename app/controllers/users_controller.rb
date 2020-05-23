@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation)
   end
 
   def logged_in_user 
@@ -58,6 +58,20 @@ class UsersController < ApplicationController
     redirect_to(root_url) unless current_user?(@user)
   end
 
+  def myposts
+    @user = current_user
+    @posts = @user.posts.where("post_id is NULL")
+    
+  end
+  
+  def mycomments
+    @user = current_user
+    @comments = @user.posts.where("post_id is NOT NULL")
+  end
+  
+  def commentstome
+    @commtome = Post.where('post_id is NOT NULL')
+  end
 end
 
 
