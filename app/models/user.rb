@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :posts, dependent: :destroy
+    attr_accessor :remember_token, :activation_token, :reset_token
     attr_accessor :remember_token
     has_many :posts, dependent: :destroy
 
@@ -35,7 +35,7 @@ class User < ApplicationRecord
         return false if remember_digest.nil?
         BCrypt::Password.new(digest).is_password?(token)
     end   
-    
+
     def forget
         update_attribute(:remember_digest, nil)
     end

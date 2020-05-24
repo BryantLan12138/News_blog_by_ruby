@@ -10,8 +10,8 @@
         <div class="col-sm-8">
           <nav>
             <ul class="nav navbar-nav my-auto home-nav">
-              <li><%= link_to "Recent Post", "#" %></li>
-              <li><%= link_to "Selected Post", "#"%></li> 
+              <li><%= link_to "Recent Post", news_path, class:"btn btn-primary active btnHighlight" %></li>
+              <li><%= link_to "Selected Post", "#", id: "selected" %></li> 
               <% if logged_in? %>
                 <li><%= link_to "My Settings",   edit_user_url(current_user.id) %></li>
               <% end %>
@@ -19,14 +19,50 @@
               <li><%= link_to "New Post", post_new_path, class: "new_post" %></li>
             </ul>
           </nav>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
+          
+    <div id="allposts">
+      <% @posts.each do |apost| %>
+        <div class="card">
+          <div class="card-body">
+              <div class="text-left">
+                <div class = "row" id = "postarea">
+                  <div class = "col-sm-2">
+                  <% if DateTime.now - 30.days <= apost.created_at %>
+                    <% if apost.user.avatar_url.present? %>
+                      <%= image_tag(apost.user.avatar_url, :class => "avatar3") if apost.user.avatar_url.present? %>
+                    <% else %>
+                      <%= image_tag "default.png", :class => "avatar3" %><br>
+                    <% end %>
+                    
+                  </div>
+                  
+                  <% if logged_in? %>
+                    <p><%= link_to apost.title, post_url(apost.id), class:"title" %></p>
+                  <% else %>
+                    <p><%= link_to apost.title, post_url(apost.id), class:"title-visitors" %></p>
+                  <% end %>
+                  
+                  <p class="text-muted">
+                    <%= link_to apost.user.name, user_url(apost.user.id), class:"text-muted" %>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                    <%= apost.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s %>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                    <%= apost.topic[0].name %>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="glyphicon glyphicon-comment"></span>
+                    <%= Post.where("post_id is NOT NULL AND superpid = ?", apost.superpid).count %>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    <%= apost.view %>
+                  </p>
+                </div>
+              </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  </div>
         </div>
         <div class="col-sm-4">
           <div class="postList">
@@ -39,7 +75,7 @@
                     <% if auser.avatar_url.present? %>
                       <%= image_tag(auser.avatar_url, :class => "avatar3") if auser.avatar_url.present? %><br>
                     <% else %>
-                      <%= image_tag "default.png", :class => "avatar3" %><br>
+                      <%= image_tag "default.png", :size => "260*180", :class => "avatar3" %><br>
                     <% end %>
                     <%= link_to auser.name, user_url(auser.id), class:"text-muted" %>
                     <span>(<%= auser.logincount %>)</span>
