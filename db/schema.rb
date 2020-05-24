@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 2020_05_23_092856) do
     t.boolean "admin", default: false
     t.string "reset_digest"
     t.datetime "reset_sent_at"
-    t.datetime "lasttime"
     t.text "intro"
+    t.datetime "lasttime"
     t.integer "logincount", default: 1
     t.index ["email"], name: "index_users_on_email", unique: true
   end

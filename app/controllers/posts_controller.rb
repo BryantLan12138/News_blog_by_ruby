@@ -52,7 +52,7 @@ class PostsController < ApplicationController
         PostsTopic.create(topic_id:16, post_id: @post.id)
       end
       flash[:success] = "You just made a new post!"
-      redirect_to post_url(Post.find_by(superpid: @post.superpid).id)
+      redirect_to root_path(Post.find_by(superpid: @post.superpid).id)
     else
       @feed_items = []
       render new_post_path

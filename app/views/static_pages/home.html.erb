@@ -16,7 +16,7 @@
                 <li><%= link_to "My Settings",   edit_user_url(current_user.id) %></li>
               <% end %>
               <li><input type="text" class="form-control search" placeholder="search..." name="topicSearch"> </li>  
-              <li><%= link_to "New Post", "#", class: "new_post" %></li>
+              <li><%= link_to "New Post", post_new_path, class: "new_post" %></li>
             </ul>
           </nav>
           <%= render 'layouts/home_post_summary' %>
