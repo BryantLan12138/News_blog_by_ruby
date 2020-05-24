@@ -34,28 +34,37 @@
             <div class = "container side-container">
               <div class="row">
                 <%= render 'layouts/recent_member' %>
-                <%= render 'layouts/recent_member' %>
-                <%= render 'layouts/recent_member' %>
-                <%= render 'layouts/recent_member' %>
-                <%= render 'layouts/recent_member' %>
-                <%= render 'layouts/recent_member' %>
-                <%= render 'layouts/recent_member' %>
-                <%= render 'layouts/recent_member' %>
-                <%= render 'layouts/recent_member' %>
-                <%= render 'layouts/recent_member' %>
-                <%= render 'layouts/recent_member' %>
-                <%= render 'layouts/recent_member' %>
+                <% User.all.first(12).each do |auser| %>
+                  <div class="col-sm-3 text-center">
+                    <% if auser.avatar_url.present? %>
+                      <%= image_tag(auser.avatar_url, :class => "avatar3") if auser.avatar_url.present? %><br>
+                    <% else %>
+                      <%= image_tag "default.png", :class => "avatar3" %><br>
+                    <% end %>
+                    <%= link_to auser.name, user_url(auser.id), class:"text-muted" %>
+                    <span>(<%= auser.logincount %>)</span>
+                  </div>
+              <% end %>
               </div>
             </div>
           </div>
           <div class="postList">
             <h3>Topics</h3>
             <div class = "container side-container">
-                <%= link_to "Outlook", "https://outlook.live.com/", class:"badge btn btn-sm" %>
-                <%= link_to "RMIT", "https://www.rmit.edu.au/", class:"badge btn btn-sm" %>
-                <%= link_to "Stack", "https://stackoverflow.com/", class:"badge btn btn-sm" %>
-                <%= link_to "RoR", "https://rubyonrails.org/", class:"badge btn btn-sm" %>
-                <%= link_to "MS Docs", "https://docs.microsoft.com/", class:"badge btn btn-sm" %>           
+          
+            <% @topics.each do |topic| %>
+              <div class="col-sm-3 text-center">
+                <% if (topic.id == topic.id.to_i) %>
+                  <label class="badge badgeHighlight" for="<%= topic.id %>"><%= topic.name %></label>
+                  <%= check_box_tag topic.id, topic.id, :checked => "checked" %>
+                <% else %>
+                  <label class="badge" for="<%= topic.id %>"><%= topic.name %></label>
+                  <%= check_box_tag topic.id, topic.id %>
+                <% end %>
+              </div>
+            <% end %>
+
+       </div>          
           </div>
         </div>
         <div class="postList">
