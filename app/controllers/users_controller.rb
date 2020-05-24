@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.where("post_id is NULL")
   end
 
   def new
@@ -42,7 +43,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :phone, :password, :city, :password_confirmation)
   end
 
   def logged_in_user 
