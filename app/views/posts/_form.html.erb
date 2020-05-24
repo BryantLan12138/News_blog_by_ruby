@@ -1,0 +1,13 @@
+<div class="container">
+<%= form_for @post, url: {action: :create} do |f| %>
+    <%= render 'layouts/error_message' %>
+    <%= f.label :topic %>
+    <%= f.collection_select(:topic_ids, Topic.all, :id, :name, {:include_blank => '=====Select====='}, class: 'form-control') %><br><br>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control', placeholder:"Enter your post title here..." %><br>
+    <%= f.label :content %>
+    <%= f.text_area :content, :id=>"atextarea" ,class: 'form-control noresize', size: "50x20", placeholder:"Enter your post here..." %><br>
+    <%= f.submit yield(:button_text), class: "btn btn-info" %>
+    <%= link_to "Cancel", news_path, class: "btn btn-warning"  %>
+<% end %>
+</div>
