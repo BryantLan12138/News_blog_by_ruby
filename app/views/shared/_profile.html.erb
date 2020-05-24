@@ -1,5 +1,5 @@
 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    <p><%=gravatar_for @user%><%=@user.name%><b class="caret">
+    <p><%= image_tag(@user.image_url.to_s) %>  <%=@user.name%><b class="caret">
     </b></p> 
     
   </a>
