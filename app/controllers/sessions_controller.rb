@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
       log_in(user)
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       flash[:success] = 'Congratulations! Login successfully!'
-      redirect_to news_url
+      redirect_to root_path
     else
       flash[:danger] = 'Wrong email and password! Please check you detail and try again!'
       render 'new'
@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
   
   def login
     if logged_in?
-      redirect_to news_url
+      redirect_to root_path
     end
   end
     

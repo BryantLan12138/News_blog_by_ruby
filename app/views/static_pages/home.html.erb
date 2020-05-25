@@ -19,17 +19,13 @@
               <li><%= link_to "New Post", new_post_path, class: "new_post" %></li>
             </ul>
           </nav>
-          
-        </div>
-
-
-<div id="allposts">
+    <div id="allposts">
       <% @posts.each do |apost| %>
         <div class="card">
           <div class="card-body">
               <div class="text-left">
                 <div class = "row" id = "postarea">
-                  <div class = "col-sm-2">
+                  <div class = "col-sm-4">
                   <% if DateTime.now - 30.days <= apost.created_at %>
                     <% if apost.user.avatar_url.present? %>
                       <%= image_tag(apost.user.avatar_url, :class => "avatar3") if apost.user.avatar_url.present? %>
@@ -64,18 +60,15 @@
         </div>
       <% end %>
     <% end %>
-  </div>
-  </div>
 
 
-
-        <div class="col-sm-4">
+        <div class="col-sm-8">
           <div class="postList">
             <h3>Recent Members</h3>
             <div class = "container side-container">
               <div class="row">
                 <% User.all.first(12).each do |auser| %>
-            <div class="col-sm-3 text-center">
+            <div class="col-sm-8 text-center">
               <% if auser.avatar_url.present? %>
                 <%= image_tag(auser.avatar_url, :class => "avatar3") if auser.avatar_url.present? %><br>
               <% else %>
@@ -88,8 +81,11 @@
               </div>
             </div>
           </div>
+
+
           <div class="postList">
             <h3>Topics</h3>
+            <div class="row">
               <% @topics.each do |topic| %>
                 <div class="col-sm-3 text-center">            
                 <label class="badge" for="<%= topic.id %>"><%= topic.name %></label>
@@ -97,30 +93,51 @@
                 </div>
               <% end %>
           </div>
+          </div>
+
           
-
-
           <div class="postList">
             <h3>Posts</h3>
-            <div class = "container side-container">
+            <div class = "container side-container" id = "side-container">
+            <div class="row">
               <% @list.order("view ASC").first(6).each do |postSort| %>
               
             <div class="row text-muted" style="margin-left: 20px; margin-right: 10px; margin-bottom: 10px;">
-              <div class="col-sm-10 textHidden">
+              <div class="col-sm-3 textHidden">
                 <span><%= link_to postSort.title, post_url(postSort.id), class:"text-muted" %></span>
               </div>
-              <div class="col-sm-2 text-right">
+              <div class="col-sm-3 text-right">
                 <span class="glyphicon glyphicon-eye-open"></span>
                 <%= postSort.view %>
               </div>
-            </div>
-                
-              
-          <% end %>
+            </div>  
+           <% end %>
           </div>
           </div>
-          <%= render 'layouts/side_links' %>
-        </div>
+          </div>
+          
+          <div class="postList">
+            <h3>Links</h3><br>
+            <div class = "row">
+                <div class="col-3 side-container">
+                    <%= link_to "Outlook", "https://outlook.live.com/", class:"badge btn btn-sm" %>
+                    <%= link_to "RMIT", "https://www.rmit.edu.au/", class:"badge btn btn-sm" %>
+                    <%= link_to "Stack", "https://stackoverflow.com/", class:"badge btn btn-sm" %>
+                    <%= link_to "RoR", "https://rubyonrails.org/", class:"badge btn btn-sm" %>
+                    <%= link_to "MS Docs", "https://docs.microsoft.com/", class:"badge btn btn-sm" %>
+                </div>
+          </div>
+
+          </div>
+      </div>
+  </div>
+
+
+
+
+
+
+        
 
 
     
