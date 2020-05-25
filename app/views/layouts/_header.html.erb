@@ -25,10 +25,7 @@
                 <% sum = eval views.join("+") %>
                 <% topic_list.store(topic.id, sum.to_i) %>
               <% end %>
-              
-              <% top1 = topic_list.max_by { |k,v| v }[0] %>
-              <% topic_list.delete(top1) %>
-              <% top2 = topic_list.max_by { |k,v| v }[0] %>
+
               
             
             </ul>

@@ -1,7 +1,7 @@
 <br><br><br>
 <div class="container text-center">
-  <% if @user.avatar_url.present? %>
-    <%= image_tag(@user.avatar_url, :class => "avatar2") %><br>
+  <% if @user.image.present? %>
+    <%= image_tag(@user.image.to_s, :class => "avatar2") %><br>
   <% else %>
     <%= image_tag "default.png", :class => "avatar2" %><br>
   <% end %>

@@ -2,9 +2,8 @@ class User < ApplicationRecord
     attr_accessor :remember_token, :activation_token, :reset_token
     attr_accessor :remember_token
     has_many :posts, dependent: :destroy
+    mount_uploader :image, AvatarUploader
 
-    mount_uploader :avatar, AvatarUploader
-    mount_uploader :card, AvatarUploader
     before_save { self.email = email.downcase }
     validates :name, presence:true, length: { maximum: 50 }
     validates :phone, presence:true, length: { maximum: 12 }

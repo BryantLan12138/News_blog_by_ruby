@@ -31,8 +31,8 @@
                 <div class = "row" id = "postarea">
                   <div class = "col-sm-2">
                   <% if DateTime.now - 30.days <= apost.created_at %>
-                    <% if apost.user.avatar_url.present? %>
-                      <%= image_tag(apost.user.avatar_url, :class => "avatar3") if apost.user.avatar_url.present? %>
+                    <% if apost.user.image.present? %>
+                      <%= image_tag(apost.user.image, :class => "avatar3") if apost.user.image.present? %>
                     <% else %>
                       <%= image_tag "default.png", :class => "avatar3", :width => "50" , :height => "50" %><br>
                     <% end %>
@@ -76,8 +76,8 @@
               <div class="row">
                 <% User.all.first(12).each do |auser| %>
             <div class="col-sm-3 text-center">
-              <% if auser.avatar_url.present? %>
-                <%= image_tag(auser.avatar_url, :class => "avatar3") if auser.avatar_url.present? %><br>
+              <% if auser.image.present? %>
+                <%= image_tag(auser.image, :class => "avatar3") if auser.image.present? %><br>
               <% else %>
                 <%= image_tag "default.png", :class => "avatar3", :width => "50" , :height => "50" %><br>
               <% end %>
