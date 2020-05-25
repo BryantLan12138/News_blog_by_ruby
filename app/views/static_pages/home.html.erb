@@ -34,7 +34,7 @@
                     <% if apost.user.avatar_url.present? %>
                       <%= image_tag(apost.user.avatar_url, :class => "avatar3") if apost.user.avatar_url.present? %>
                     <% else %>
-                      <%= image_tag "default.png", :class => "avatar3" %><br>
+                      <%= image_tag "default.png", :class => "avatar3", :width => "50" , :height => "50" %><br>
                     <% end %>
                     
                   </div>
