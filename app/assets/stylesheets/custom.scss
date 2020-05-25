@@ -253,9 +253,7 @@ input {
           color: #FF521B;
       }
   }
-  .new_post:hover {
-    background-color: #30666C;
-}
+
 .post_summary {
     background-color: white;
     display: flex;
@@ -359,4 +357,24 @@ padding: 1em 0;
     height: 200px;
     width: 200px;
     border-radius: 50%;
+}
+
+.post-form {
+    width: 600px;
+    margin: 0 auto;
+    label {
+        font-size: 1.2em;
+        margin-top: .1em;
+        text-align: right;
+    }
+}
+
+.session-form-btn-group {
+
+    margin: 1em auto;
+}
+
+.avatar3 {
+    width: 90px;
+    height: 90px;
 }

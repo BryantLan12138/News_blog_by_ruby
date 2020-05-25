@@ -26,7 +26,7 @@
       <% end %>
     <p class = "showPost text-muted">
       <% if @post.user.image.present? %>
-        <%= image_tag(@post.user.image, :class => "avatar") %>&nbsp&nbsp&nbsp&nbsp
+        <%= image_tag(@post.user.image.to_s, :class => "avatar") %>&nbsp&nbsp&nbsp&nbsp
       <% else %>
         <%= image_tag "default.png", :class => "avatar", :width => "50" , :height => "50" %>&nbsp&nbsp&nbsp&nbsp
       <% end %>
