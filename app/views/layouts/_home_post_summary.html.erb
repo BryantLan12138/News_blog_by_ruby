@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row post_summary">
       <div class="psum post-img">
-        <img src="https://via.placeholder.com/90" alt="">
+        <%= image_tag(apost.user.image.to_s, :class => "avatar3") if apost.user.image.present? %>
       </div>
       <div class="psum post-detail">
         <div class="container">

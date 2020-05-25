@@ -19,15 +19,57 @@
               <li><%= link_to "New Post", post_new_path, class: "new_post" %></li>
             </ul>
           </nav>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
-          <%= render 'layouts/home_post_summary' %>
+          <% @posts.each do |apost| %>
+          <%= render 'layouts/home_post_summary', :apost => apost %>
         </div>
+
+
+<div id="allposts">
+
+        <!-- <div class="card">
+          <div class="card-body">
+              <div class="text-left">
+                <div class = "row" id = "postarea">
+                  <div class = "col-sm-2">
+                  <% if DateTime.now - 30.days <= apost.created_at %>
+                    <% if apost.user.image.present? %>
+                      <%= image_tag(apost.user.image.to_s, :class => "avatar3") if apost.user.image.present? %>
+                    <% else %>
+                      <%= image_tag "default.png", :class => "avatar3", :width => "50" , :height => "50" %><br>
+                    <% end %>
+                    
+                  </div>
+                  
+                  <% if logged_in? %>
+                    <p><%= link_to apost.title, post_url(apost.id), class:"title" %></p>
+                  <% else %>
+                    <p><%= link_to apost.title, post_url(apost.id), class:"title-visitors" %></p>
+                  <% end %>
+                  
+                  <p class="text-muted">
+                    <%= link_to apost.user.name, user_url(apost.user.id), class:"text-muted" %>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                    <%= apost.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s %>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                    <%= apost.topic[0].name %>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="glyphicon glyphicon-comment"></span>
+                    <%= Post.where("post_id is NOT NULL AND superpid = ?", apost.superpid).count %>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    <%= apost.view %>
+                  </p>
+                </div>
+              </div>
+          </div>
+        </div> -->
+      <% end %>
+    <% end %>
+  </div>
+  </div>
+
+
+
         <div class="col-sm-4">
           <div class="postList">
             <h3>Recent Members</h3>

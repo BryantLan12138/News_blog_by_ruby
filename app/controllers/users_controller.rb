@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @posts = @user.posts.where("post_id is NULL")
   end
 
-  def new
+  def new 
     @user = User.new
   end
 
@@ -73,6 +73,8 @@ class UsersController < ApplicationController
   def commentstome
     @commtome = Post.where('post_id is NOT NULL')
   end
+
+  helper_method :mycomments
 end
 
 
