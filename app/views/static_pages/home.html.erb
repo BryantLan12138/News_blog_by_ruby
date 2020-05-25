@@ -10,17 +10,20 @@
         <div class="col-sm-8">
           <nav>
             <ul class="nav navbar-nav my-auto home-nav">
-              <li><%= link_to "Recent Post", news_path, class:"btn btn-primary active btnHighlight" %></li>
-              <li><%= link_to "Selected Post", "#", id: "selected" %></li> 
+              <li><%= link_to "Recent Post", "#" %></li>
+              <li><%= link_to "Selected Post", "#"%></li> 
               <% if logged_in? %>
                 <li><%= link_to "My Settings",   edit_user_url(current_user.id) %></li>
               <% end %>
               <li><input type="text" class="form-control search" placeholder="search..." name="topicSearch"> </li>  
-              <li><%= link_to "New Post", post_new_path, class: "new_post" %></li>
+              <li><%= link_to "New Post", new_post_path, class: "new_post" %></li>
             </ul>
           </nav>
           
-    <div id="allposts">
+        </div>
+
+
+<div id="allposts">
       <% @posts.each do |apost| %>
         <div class="card">
           <div class="card-body">
@@ -63,55 +66,59 @@
     <% end %>
   </div>
   </div>
-        </div>
+
+
+
         <div class="col-sm-4">
           <div class="postList">
             <h3>Recent Members</h3>
             <div class = "container side-container">
               <div class="row">
-                <%= render 'layouts/recent_member' %>
                 <% User.all.first(12).each do |auser| %>
-                  <div class="col-sm-3 text-center">
-                    <% if auser.avatar_url.present? %>
-                      <%= image_tag(auser.avatar_url, :class => "avatar3") if auser.avatar_url.present? %><br>
-                    <% else %>
-                      <%= image_tag "default.png", :size => "260*180", :class => "avatar3" %><br>
-                    <% end %>
-                    <%= link_to auser.name, user_url(auser.id), class:"text-muted" %>
-                    <span>(<%= auser.logincount %>)</span>
-                  </div>
+            <div class="col-sm-3 text-center">
+              <% if auser.avatar_url.present? %>
+                <%= image_tag(auser.avatar_url, :class => "avatar3") if auser.avatar_url.present? %><br>
+              <% else %>
+                <%= image_tag "default.png", :class => "avatar3", :width => "50" , :height => "50" %><br>
               <% end %>
+              <%= link_to auser.name, user_url(auser.id), class:"text-muted" %>
+              <span>(<%= auser.logincount %>)</span>
+            </div>
+          <% end %>
               </div>
             </div>
           </div>
           <div class="postList">
             <h3>Topics</h3>
-            <div class = "container side-container">
+              <% @topics.each do |topic| %>
+                <div class="col-sm-3 text-center">            
+                <label class="badge" for="<%= topic.id %>"><%= topic.name %></label>
+                <%= check_box_tag topic.id, topic.id %>
+                </div>
+              <% end %>
+          </div>
           
-            <% @topics.each do |topic| %>
-              <div class="col-sm-3 text-center">
-                <% if (topic.id == topic.id.to_i) %>
-                  <label class="badge badgeHighlight" for="<%= topic.id %>"><%= topic.name %></label>
-                  <%= check_box_tag topic.id, topic.id, :checked => "checked" %>
-                <% else %>
-                  <label class="badge" for="<%= topic.id %>"><%= topic.name %></label>
-                  <%= check_box_tag topic.id, topic.id %>
-                <% end %>
-              </div>
-            <% end %>
 
-       </div>          
+
+          <div class="postList">
+            <h3>Posts</h3>
+            <div class = "container side-container">
+              <% @list.order("view ASC").first(6).each do |postSort| %>
+              
+            <div class="row text-muted" style="margin-left: 20px; margin-right: 10px; margin-bottom: 10px;">
+              <div class="col-sm-10 textHidden">
+                <span><%= link_to postSort.title, post_url(postSort.id), class:"text-muted" %></span>
+              </div>
+              <div class="col-sm-2 text-right">
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <%= postSort.view %>
+              </div>
+            </div>
+                
+              
+          <% end %>
           </div>
-        </div>
-        <div class="postList">
-          <h3>Posts</h3>
-          <div class = "container side-container">
-            <%= render 'layouts/side_post' %>
-            <%= render 'layouts/side_post' %>
-            <%= render 'layouts/side_post' %>
-            <%= render 'layouts/side_post' %>
           </div>
-        </div>
           <%= render 'layouts/side_links' %>
         </div>
 

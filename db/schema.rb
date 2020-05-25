@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_05_24_070745) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
+    t.string "avatar"
     t.string "phone"
     t.string "city"
     t.string "card"
