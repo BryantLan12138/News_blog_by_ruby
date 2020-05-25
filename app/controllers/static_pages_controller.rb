@@ -12,7 +12,19 @@ class StaticPagesController < ApplicationController
     @topics = Topic.all
   end
   
-
+  def selectedPost
+    
+    @topic_ids = params[:topics].split(",")
+    
+    puts "---------------------#{@topic_ids}-----------------------------"
+    if !@topic_ids.nil?
+      @list = Post.where(post_id: nil).order("view DESC")
+      @topics = Topic.all
+    else
+      redirect_to news_path
+    end
+    
+  end
 
   def news
     @posts = Post.where(post_id: nil).order("created_at DESC")

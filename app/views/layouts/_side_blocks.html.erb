@@ -1,0 +1,100 @@
+ <div class="postList">
+        <h3 style="margin-left: 20px;">Recent Member:</h3><br>
+        <div class = "row">
+          
+          <% User.all.first(12).each do |auser| %>
+            <div class="col-sm-3 text-center">
+              <% if auser.avatar_url.present? %>
+                <%= image_tag(auser.avatar_url, :class => "avatar3") if auser.avatar_url.present? %><br>
+              <% else %>
+                <%= image_tag "default.png", :class => "avatar3", :width => "50" , :height => "50" %><br>
+              <% end %>
+              <%= link_to auser.name, user_url(auser.id), class:"text-muted" %>
+              <span>(<%= auser.logincount %>)</span>
+            </div>
+          <% end %>
+       </div>
+       <br><br>
+      </div> 
+      <br><br>
+
+      <div class="postList">
+        <h3 style="margin-left: 20px;">Topics:</h3><br>
+        <div class = "row">
+    
+  
+         
+         
+            <% @topics.each do |topic| %>
+              <div class="col-sm-3 text-center">
+                <label class="badge" for="<%= topic.id %>"><%= topic.name %></label>
+              </div>
+            <% end %>
+
+       </div>
+       <br><br>
+      </div>
+    <br><br>
+      <div class="postList">
+        <h3 style="margin-left: 20px;">Posts:</h3><br>
+          
+          <% @list.order("view ASC").first(6).each do |postSort| %>
+              
+            <div class="row text-muted" style="margin-left: 20px; margin-right: 10px; margin-bottom: 10px;">
+              <div class="col-sm-10 textHidden">
+                <span><%= link_to postSort.title, post_url(postSort.id), class:"text-muted" %></span>
+              </div>
+              <div class="col-sm-2 text-right">
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <%= postSort.view %>
+              </div>
+            </div>
+                
+              
+          <% end %>
+       <br><br>
+      </div>
+     <br><br>    
+    
+    
+    <div class="postList">
+      <h3 style="margin-left: 20px;">Links:</h3><br>
+      <div class = "row">
+        
+       
+          <div class="col-sm-4 text-center">
+             <%= link_to "Outlook", "https://outlook.live.com/", class:"badge btn btn-sm" %>
+          </div>
+          
+          <div class="col-sm-4 text-center">
+             <%= link_to "RMIT", "https://www.rmit.edu.au/", class:"badge btn btn-sm" %>
+          </div>
+          
+          <div class="col-sm-4 text-center">
+             <%= link_to "Stackoverflow", "https://stackoverflow.com/", class:"badge btn btn-sm" %>
+          </div>
+          
+          <div class="col-sm-4 text-center">
+             <%= link_to "Rails", "https://rubyonrails.org/", class:"badge btn btn-sm" %>
+          </div>
+          
+          <div class="col-sm-4 text-center">
+             <%= link_to "Docs", "https://docs.microsoft.com/", class:"badge btn btn-sm" %>
+          </div>
+        
+     </div>
+    <br><br>
+    
+    <script>
+
+      $("label").click(function(){
+        if ($(this).hasClass("badgeHighlight")){
+          $(this).removeClass("badgeHighlight");
+        }else{
+          $(this).addClass("badgeHighlight");
+        }
+    	})
+    	
+
+      
+    </script>
