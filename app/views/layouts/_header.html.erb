@@ -5,7 +5,35 @@
       <nav>
         <ul class="nav navbar-nav navbar-right my-auto">
           <li><%= link_to "Home",   root_path %></li>
-          <li><%= link_to "News",   news_path %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle anime" data-toggle="dropdown">
+            News <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              
+              
+              <% topic_list = Hash.new() %>
+              <% Topic.all.each do |topic| %>
+                <% views = [] %>
+                <% if topic.post.present? %>
+                  <% topic.post.each do |ppp| %>
+                    <% if ppp.post_id.nil? %>
+                      <% views << ppp.view.to_i %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <% sum = eval views.join("+") %>
+                <% topic_list.store(topic.id, sum.to_i) %>
+              <% end %>
+              
+              <% top1 = topic_list.max_by { |k,v| v }[0] %>
+              <% topic_list.delete(top1) %>
+              <% top2 = topic_list.max_by { |k,v| v }[0] %>
+              
+            
+            </ul>
+          </li>
+          
           <% if logged_in? %>
             <li class="dropdown">
               <%= render 'shared/profile', :@user => current_user %>
