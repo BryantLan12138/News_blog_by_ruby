@@ -4,8 +4,8 @@
           
           <% User.all.first(12).each do |auser| %>
             <div class="col-sm-3 text-center">
-              <% if auser.avatar_url.present? %>
-                <%= image_tag(auser.avatar_url, :class => "avatar3") if auser.avatar_url.present? %><br>
+              <% if auser.image.present? %>
+                <%= image_tag(auser.image.to_s, :class => "avatar3") if auser.image.present? %><br>
               <% else %>
                 <%= image_tag "default.png", :class => "avatar3", :width => "50" , :height => "50" %><br>
               <% end %>

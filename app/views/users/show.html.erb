@@ -1,19 +1,12 @@
-<br><br><br>
-<div class="container text-center">
-  <% if @user.avatar_url.present? %>
-    <%= image_tag(@user.avatar_url, :class => "avatar2") %><br>
-  <% else %>
-    <%= image_tag "default.png", :class => "avatar2" %><br>
-  <% end %>
-  <h3><%= @user.name %></h3>
-  <h2 class="text-muted">
-    <span class="glyphicon glyphicon-time"></span><%= @user.created_at.to_date %>
-    
-    <span class="glyphicon glyphicon-map-marker"></span><%= @user.city %>
-  </h2>
-</div>
-<br><br>
-
+<%provide(:title,@user.name)%>
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center"><%= image_tag(@user.image_url.to_s, class: "prof-img") %></h1>
+                <h1><%=@user.name%></h1>
+                <p class="text-center"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <%=@user.created_at.strftime("%d/%m/%Y") %>  |     <i class="fa fa-map-marker" aria-hidden="true"></i>  <%=@user.city%></p>
+            </div>
 
 
 <div class="row">
@@ -35,7 +28,7 @@
                 </div>
                 
                 <div class="col-sm-2">
-                  <%= mypost.created_at.to_date %>
+                  <%= mypost.created_at.strftime("%d/%m/%Y") %>
                 </div>
               </div>
               <br>
@@ -59,7 +52,7 @@
             
               <div class="row">
                 <div class="col-sm-12">
-                  <%= mycomment.created_at.to_date %> in
+                  <%= mycomment.created_at.strftime("%d/%m/%Y") %> in
                   <%= link_to Post.find_by(id: mycomment.post_id).title, post_url(mycomment.post_id) %>
                    comment:
                    <p class = "showPost text-muted">

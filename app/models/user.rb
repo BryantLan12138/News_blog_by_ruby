@@ -2,12 +2,11 @@ class User < ApplicationRecord
     attr_accessor :remember_token, :activation_token, :reset_token
     attr_accessor :remember_token
     has_many :posts, dependent: :destroy
+    mount_uploader :image, AvatarUploader
 
-    mount_uploader :avatar, AvatarUploader
-    mount_uploader :card, AvatarUploader
     before_save { self.email = email.downcase }
-    validates :name, presence:true, length: { maximum: 50 }
-    validates :phone, presence:true, length: { maximum: 12 }
+    validates :name, presence:true, length: { maximum: 50 }, allow_nil: true
+    validates :phone, presence:true, length: { maximum: 12 }, allow_nil: true
     VALID_EMAIL_REGEX=/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     validates :email, presence:true, length: { maximum: 255 },
                                     format: { with: VALID_EMAIL_REGEX },

@@ -27,8 +27,8 @@
                 <div class = "row" id = "postarea">
                   <div class = "col-sm-4">
                   <% if DateTime.now - 30.days <= apost.created_at %>
-                    <% if apost.user.avatar_url.present? %>
-                      <%= image_tag(apost.user.avatar_url, :class => "avatar3") if apost.user.avatar_url.present? %>
+                    <% if apost.user.image.present? %>
+                      <%= image_tag(apost.user.image.to_s, :class => "avatar3") if apost.user.image.present? %>
                     <% else %>
                       <%= image_tag "default.png", :class => "avatar3", :width => "50" , :height => "50" %><br>
                     <% end %>
@@ -115,7 +115,7 @@
           </div>
           </div>
           </div>
-          
+
           <div class="postList">
             <h3>Links</h3><br>
             <div class = "row">

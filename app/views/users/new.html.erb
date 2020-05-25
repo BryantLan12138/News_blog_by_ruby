@@ -1,7 +1,35 @@
-<%provide(:button_text,'Sign up')%>
-<h1>Sign up</h1>
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <%= render 'form' %>
+<div class="container">
+    
+    <div class="row post-form">
+        <h1>Sign up</h1>
+        <div>
+            <%= form_with(model: @user, local: true) do |f| %>
+                <%= render 'shared/error_messages' %>
+                <div class="form-group">
+                    <%= f.label :email, class: "col-sm-5 col-md-5 col-lg-5 col-form-label" %>
+                    <div class="col-sm-7 col-md-7 col-lg-7">
+                        <%= f.email_field :email, class: 'form-control' , placeholder:"Enter your email address"%>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <%= f.label :password, class: "col-sm-5 col-md-5 col-lg-5 col-form-label" %>
+                    <div class="col-sm-7 col-md-7 col-lg-7">
+                        <%= f.password_field :password, class: 'form-control' , placeholder:"Enter a new password" %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <%= f.label :password_confirmation, class: "col-sm-5 col-md-5 col-lg-5 col-form-label" %>
+                    <div class="col-sm-7 col-md-7 col-lg-7">
+                        <%= f.password_field :password_confirmation, class: 'form-control' , placeholder:"Confirm password" %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="session-form-btn-group">
+                        <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block" %>
+                        <%= link_to "Already a user? Login here", login_path, class: "btn btn-lg btn-block"%>
+                    </div>
+                </div>
+            <% end %>
+        </div>
     </div>
 </div>
