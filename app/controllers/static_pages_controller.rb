@@ -21,7 +21,7 @@ class StaticPagesController < ApplicationController
       @list = Post.where(post_id: nil).order("view DESC")
       @topics = Topic.all
     else
-      redirect_to news_path
+      redirect_to root_path
     end
     
   end
@@ -36,4 +36,23 @@ class StaticPagesController < ApplicationController
     @list = Post.where(post_id: nil).order("view DESC")
     @topics = Topic.all
   end
+
+
+  private
+  
+    def post_params
+      params.require(:post).permit(:title, :topic_ids, :content, :user_id, :post_id, :superpid)
+    end
+  
+    def login_check
+      if !logged_in?
+          flash[:warning] = "You should login first to see the content!"
+          redirect_to root_path
+      end
+    end
+    
+    
+    def find_post
+      @post = Post.find(params[:id])
+    end
 end

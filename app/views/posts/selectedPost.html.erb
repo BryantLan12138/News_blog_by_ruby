@@ -1,0 +1,211 @@
+
+<br><br>
+
+<div class="postPage">
+<div class="row">
+  <div class = "col-sm-8"><br>
+  
+    <div class="row">
+      <div class="col-sm-2"><%= link_to "Recent Posts", news_path, class:"btn btn-primary"%></div>
+      
+      <div class="col-sm-2">
+        
+        <%= link_to "Selected Posts","#", class:"btn btn-primary active btnHighlight", id: "selected" %>
+
+      </div>
+      <% if logged_in? %>
+        <div class="col-sm-2"><%= link_to "My Settings", edit_user_url(current_user.id), class:"btn btn-primary" %></div>
+      <% end %>
+      <div class="col-sm-2">
+        
+        
+          <input type="text" class="form-control" placeholder="search..." />
+        
+        
+      </div>
+      <div class="col-sm-2"><%= link_to "New Post", new_post_path, class:"btn btn-success" %></div>
+    </div>
+    <br><br>
+
+
+<% @topic_ids.each do |topic_id| %>
+  <% if !Topic.find(topic_id).post.all.nil? %>
+  <% Topic.find(topic_id).post.all.each do |thispost| %>
+    <div class="card" id="allposts">
+      <div class="card-body">
+          <div class="text-left">
+            <div class = "row">
+
+              <div class = "col-sm-2">
+       
+                <% if thispost.user.image.to_s.present? %>
+                  <%= image_tag(thispost.user.image.to_s, :class => "avatar3") if thispost.user.image.to_s.present? %>
+                <% else %>
+                  <%= image_tag "default.png", :class => "avatar3" %><br>
+                <% end %>
+                
+              </div>
+              
+              <% if logged_in? %>
+                <p><%= link_to thispost.title, post_url(thispost.id), class:"title" %></p>
+              <% else %>
+                <p><%= link_to thispost.title, post_url(thispost.id), class:"title-visitors" %></p>
+              <% end %>
+              
+              <p class="text-muted">
+                <%= link_to thispost.user.name, user_url(thispost.user.id), class:"text-muted" %>
+                &nbsp&nbsp&nbsp&nbsp&nbsp
+                <%= thispost.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s %>
+                &nbsp&nbsp&nbsp&nbsp&nbsp
+                <%= thispost.topic[0].name %>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span class="glyphicon glyphicon-comment"></span>
+                <%= Post.where("post_id is NOT NULL AND superpid = ?", thispost.superpid).count %>
+                &nbsp&nbsp&nbsp&nbsp&nbsp
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <%= thispost.view %>
+              </p>
+            </div>
+          </div>
+      </div>
+    </div>
+<% end %>       
+<% end %>
+<% end %>
+  </div>
+
+
+  <div class = "col-sm-4">
+    
+   <div class="postList">
+        <h3 style="margin-left: 20px;">Recent Member:</h3><br>
+        <div class = "row">
+          
+          <% User.all.first(12).each do |auser| %>
+            <div class="col-sm-3 text-center">
+              <% if auser.image.to_s.present? %>
+                <%= image_tag(auser.image.to_s, :class => "avatar3") if auser.image.to_s.present? %><br>
+              <% else %>
+                <%= image_tag "default.png", :class => "avatar3" %><br>
+              <% end %>
+              <%= link_to auser.name, user_url(auser.id), class:"text-muted" %>
+              <span>(<%= auser.logincount %>)</span>
+            </div>
+          <% end %>
+       </div>
+       <br><br>
+      </div> 
+      <br><br>
+
+      <div class="postList">
+        <h3 style="margin-left: 20px;">Topics:</h3><br>
+        <div class = "row">
+  
+         
+         
+            <% @topics.each do |topic| %>
+              <div class="col-sm-3 text-center">
+                <% if @topic_ids.include?(topic.id.to_s) %>
+                  <label class="badge badgeHighlight" for="<%= topic.id %>"><%= topic.name %></label>
+                  <%= check_box_tag topic.id, topic.id, :checked => "checked" %>
+                <% else %>
+                  <label class="badge" for="<%= topic.id %>"><%= topic.name %></label>
+                  <%= check_box_tag topic.id, topic.id %>
+                <% end %>
+              </div>
+            <% end %>
+
+       </div>
+       <br><br>
+      </div>
+    <br><br>
+      <div class="postList">
+        <h3 style="margin-left: 20px;">Posts:</h3><br>
+          
+          <% @list.order("view ASC").first(6).each do |postSort| %>
+              
+            <div class="row text-muted" style="margin-left: 20px; margin-right: 10px; margin-bottom: 10px;">
+              <div class="col-sm-10 textHidden">
+                <span><%= link_to postSort.title, post_url(postSort.id), class:"text-muted" %></span>
+              </div>
+              <div class="col-sm-2 text-right">
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <%= postSort.view %>
+              </div>
+            </div>
+                
+              
+          <% end %>
+       <br><br>
+      </div>
+     <br><br>    
+    
+    
+    <div class="postList">
+      <h3 style="margin-left: 20px;">Links:</h3><br>
+      <div class = "row">
+        
+       
+          <div class="col-sm-4 text-center">
+             <%= link_to "Outlook", "https://outlook.live.com/", class:"badge btn btn-sm" %>
+          </div>
+          
+          <div class="col-sm-4 text-center">
+             <%= link_to "RMIT", "https://www.rmit.edu.au/", class:"badge btn btn-sm" %>
+          </div>
+          
+          <div class="col-sm-4 text-center">
+             <%= link_to "Stackoverflow", "https://stackoverflow.com/", class:"badge btn btn-sm" %>
+          </div>
+          
+          <div class="col-sm-4 text-center">
+             <%= link_to "Rails", "https://rubyonrails.org/", class:"badge btn btn-sm" %>
+          </div>
+          
+          <div class="col-sm-4 text-center">
+             <%= link_to "Docs", "https://docs.microsoft.com/", class:"badge btn btn-sm" %>
+          </div>
+        
+     </div>
+    <br><br>
+    
+    
+    
+  </div>
+  
+  <br><br>
+  <br><br>
+  <br><br>
+</div>
+</div>
+  <%= form_tag(selected_topics_url, method: "get", id:"topics_list") do %>
+      <%= hidden_field_tag :topics %>
+      <%= submit_tag("submit",:class => "submithidden") %>
+  <% end %>
+<script>
+
+  $("label").click(function(){
+    if ($(this).hasClass("badgeHighlight")){
+      $(this).removeClass("badgeHighlight");
+    }else{
+      $(this).addClass("badgeHighlight");
+    }
+	})
+
+  $("#selected").click(function(){
+    var lists = new Array;
+    $.each($('input:checkbox:checked'),function(){
+      lists.push($(this).val());
+    });
+    document.getElementById("topics").value = lists;
+    console.log(document.getElementById("topics").value);
+    $("#topics_list").submit();
+  });
+  
+</script>
+
+
+
+
+
+
