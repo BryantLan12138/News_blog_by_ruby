@@ -1,13 +1,31 @@
 <div class="container">
-<%= form_for @post, url: {action: :create} do |f| %>
-    <%= render 'layouts/error_message' %>
-    <%= f.label :topic %>
-    <%= f.collection_select(:topic_ids, Topic.all, :id, :name, {:include_blank => '=====Select====='}, class: 'form-control') %><br><br>
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control', placeholder:"Enter your post title here..." %><br>
-    <%= f.label :content %>
-    <%= f.text_area :content, :id=>"atextarea" ,class: 'form-control noresize', size: "50x20", placeholder:"Enter your post here..." %><br>
-    <%= f.submit yield(:button_text), class: "btn btn-info" %>
-    <%= link_to "Cancel", news_path, class: "btn btn-warning"  %>
-<% end %>
+    <div class="row">
+        <div class="post-form">
+            <%= form_for @post, url: {action: :create} do |f| %>
+                <%= render 'layouts/error_message' %>
+                <div class="form-group">
+                <%= f.label :topic, class: "col-sm-2 col-form-label" %>
+                <div class="col-sm-10">
+                    <%= f.collection_select(:topic_ids, Topic.all, :id, :name, {:include_blank => 'Select topic'}, class: "form-control form-control-plaintext") %>
+                </div>
+                </div>
+                <div class="form-group">
+                    <%= f.label :title, class: "col-sm-2 col-form-label" %>
+                    <div class="col-sm-10">
+                        <%= f.text_field :title, class: 'form-control form-control-plaintext', placeholder:"Enter your post title here..." %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <%= f.label :content, class: "col-sm-2 col-form-label" %>
+                    <div class="col-sm-10">
+                        <%= f.text_area :content, :id=>"atextarea", class: 'form-control noresize form-control-plaintext', rows: 10, placeholder:"Put your content here!" %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <%= f.submit yield(:button_text), class: "btn btn-lg btn-primary btn-block" %>
+                    <%= link_to "Cancel", news_path, class: "btn btn-lg btn-block"%>
+                </div>
+            <% end %>
+        </div>
+    </div>
 </div>

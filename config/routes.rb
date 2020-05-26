@@ -14,4 +14,9 @@ Rails.application.routes.draw do
   get '/post/new', to: 'posts#new'
   post '/post/new', to: 'posts#create'
   resources :users
+  resources :posts do
+    member do
+      get :selectedPost
+    end
+  end
 end

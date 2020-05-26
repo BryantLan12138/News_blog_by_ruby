@@ -8,7 +8,7 @@
 
 User.create!(
     name: "RAD",
-    email: "rad@rad.com",
+    email: "rad2020rmit@gmail.com",
     password: "Rails2020",
     password_confirmation: "Rails2020",
     phone: "123456789012",

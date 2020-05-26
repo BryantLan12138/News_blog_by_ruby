@@ -1,10 +1,12 @@
 class User < ApplicationRecord
-    has_many :posts, dependent: :destroy
+    attr_accessor :remember_token, :activation_token, :reset_token
     attr_accessor :remember_token
+    has_many :posts, dependent: :destroy
     mount_uploader :image, AvatarUploader
+
     before_save { self.email = email.downcase }
-    validates :name, presence:true, length: { maximum: 50 }
-    validates :phone, presence:true, length: { maximum: 12 }
+    validates :name, presence:true, length: { maximum: 50 }, allow_nil: true
+    validates :phone, presence:true, length: { maximum: 12 }, allow_nil: true
     VALID_EMAIL_REGEX=/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     validates :email, presence:true, length: { maximum: 255 },
                                     format: { with: VALID_EMAIL_REGEX },
@@ -27,10 +29,12 @@ class User < ApplicationRecord
         update_attribute(:remember_digest, User.digest(remember_token))
     end
 
-    def authenticated?(remember_token)
+    def authenticated?(attribute, token)
+        digest = send("#{attribute}_digest")
         return false if remember_digest.nil?
-        BCrypt::Password.new(remember_digest).is_password?(remember_token)
-    end
+        BCrypt::Password.new(digest).is_password?(token)
+    end   
+
     def forget
         update_attribute(:remember_digest, nil)
     end
