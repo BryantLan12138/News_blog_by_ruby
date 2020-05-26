@@ -10,15 +10,16 @@
         <div class="col-sm-8">
           <nav>
             <ul class="nav navbar-nav my-auto home-nav">
-              <li><%= link_to "Recent Post", "#" %></li>
-              <li><%= link_to "Selected Post", "#"%></li> 
+              <li><%= link_to "Recent Post", root_path %></li>
+              <li><%= link_to "Selected Post", "#", id: "selected" %></li> 
               <% if logged_in? %>
                 <li><%= link_to "My Settings",   edit_user_url(current_user.id) %></li>
               <% end %>
-              <li><input type="text" class="form-control search" placeholder="search..." name="topicSearch"> </li>  
+              <li><input type="text" class="form-control search" placeholder="search..." id="key_word_search" value="<%= @pervious_input %>" / > </li>  
               <li><%= link_to "New Post", new_post_path, class: "new_post" %></li>
             </ul>
           </nav>
+    
     <div id="allposts">
       <% @posts.each do |apost| %>
         <div class="card">
@@ -56,19 +57,26 @@
                   </p>
                 </div>
               </div>
+              
           </div>
         </div>
       <% end %>
     <% end %>
 
 
-        <div class="col-sm-8">
+        
+      </div>
+  </div>
+  
+        <div class="col-sm-4">
           <div class="postList">
+            
+           
             <h3>Recent Members</h3>
-            <div class = "container side-container">
+              <div class="container-fluid fixed-top">
               <div class="row">
                 <% User.all.first(12).each do |auser| %>
-            <div class="col-sm-8 text-center">
+            <div class="col-sm-3 text-center">
               <% if auser.image.present? %>
                 <%= image_tag(auser.image.to_s, :class => "avatar3") if auser.image.present? %><br>
               <% else %>
@@ -129,18 +137,35 @@
           </div>
 
           </div>
-      </div>
-  </div>
-
-
-
-
-
-
-        
-
-
-    
-
   </body>
 </html>
+
+<script>
+
+$("#selected").click(function(){
+    var lists = new Array;
+    $.each($('input:checkbox:checked'),function(){
+      lists.push($(this).val());
+    });
+    document.getElementById("topics").value = lists;
+    console.log(document.getElementById("topics").value);
+    $("#topics_list").submit();
+  });
+  
+  
+    $("#key_word_search").bind('input propertychange',function(){
+      var keywords = $(this).val();
+      document.getElementById("keywords").value = keywords;
+      $("#search").submit();
+	  });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</script>
