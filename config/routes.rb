@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root  'static_pages#home'
   get   'sessions/new'
+
   get   'users/new'
   get   'users/index'
 
@@ -11,9 +12,17 @@ Rails.application.routes.draw do
   post  '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+
   get '/post/new', to: 'posts#new'
   post '/post/new', to: 'posts#create'
-  resources :users
+
+  resources :users do
+    member do
+      get 'my_profile', to: 'users#my_profile'
+      get 'my_posts', to: 'users#my_posts'
+    end
+  end
+
   resources :posts do
     member do
       get :selectedPost

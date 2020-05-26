@@ -3,10 +3,10 @@
     <div class="col-sm-2 col-md-2 col-lg-2">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i> My Profile</a>
+          <%= link_to 'My profile', my_profile_user_path, remote: true %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-user" aria-hidden="true"></i> My Posts</a>
+          <%= link_to 'My Posts', my_posts_user_path, remote: true %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="fa fa-commenting" aria-hidden="true"></i>  My Comments</a>
@@ -22,55 +22,7 @@
     <div class="col-sm-10 col-md-10 col-lg-10">
       
       <div id="active-tab">
-        <div>
-          <div class="row">
-            <div class="text-center">
-              <%= image_tag(@user.image_url.to_s, class: "prof-img") %>
-              <h1><%=@user.name%></h1>
-              <p class="text-center"><i class="fa fa-clock-o" aria-hidden="true"></i>
-                <%=@user.created_at.strftime("%d/%m/%Y") %>  |     <i class="fa fa-map-marker" aria-hidden="true"></i>  <%=@user.city%></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6">
-              <table class="table">
-                <thead>
-                    <tr>
-                        <th><%= @user.name %> recent posts:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @posts.each do |post| %>
-                    <tr>
-                        <td scope="row"><%= link_to post.title, post_url(post.id) %></td>
-                        <td class="text-right"><%=post.created_at.strftime("%d/%m/%Y")%></td>
-                    </tr>
-                    <% end %>
-                </tbody>
-            </table>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-6">
-              <table class="table">
-                <thead>
-                    <tr>
-                        <th colspan="2"><%= @user.name %> recent comments:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% mycomments.each do |mycomment| %>
-                    <tr>
-                        <td scope="row"><%= mycomment.created_at.strftime("%d/%m/%Y") %></td>
-                        <td class="text-right"><%= link_to Post.find_by(id: mycomment.post_id).title, post_url(mycomment.post_id) %> comment:</td>
-                        <td><p class = "showPost text-muted">
-                          <%= mycomment.content.to_s %>
-                        </p></td>
-                    </tr>
-                    <% end %>
-                </tbody>
-            </table>
-            </div>
-          </div>
-        </div>
+        
       </div>
       
     </div>

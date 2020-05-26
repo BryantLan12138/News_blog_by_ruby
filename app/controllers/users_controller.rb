@@ -40,10 +40,22 @@ class UsersController < ApplicationController
     end
   end
 
-  def myposts
+  def my_profile
+    @user = User.find(params[:id])
+    @posts = @user.posts.where("post_id is NULL")
+    @comments = @user.posts.where("post_id is NOT NULL")
+
+    respond_to do |format|
+      format.js {render layout: false}
+    end
+  end
+
+  def my_posts
     @user = current_user
     @posts = @user.posts.where("post_id is NULL")
-    
+    respond_to do |format|
+      format.js {render layout: false}
+    end
   end
   
   def mycomments
@@ -77,7 +89,8 @@ class UsersController < ApplicationController
     redirect_to(root_url) unless current_user?(@user)
   end
 
-  
+
+
   def mycomments
     @user = current_user
     @comments = @user.posts.where("post_id is NOT NULL")
