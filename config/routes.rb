@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get 'my_comments', to: 'users#my_comments'
       get 'settings', to: 'users#settings'
       get 'commentstome', to: 'users#commentstome'
+      
     end
   end
 
