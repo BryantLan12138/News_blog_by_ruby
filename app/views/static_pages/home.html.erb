@@ -109,7 +109,7 @@
             <h3>Posts</h3>
             <div class = "container side-container" id = "side-container">
             <div class="row">
-              <% @list.order("view ASC").first(6).each do |postSort| %>
+              <% @list.order("view ASC").first(5).each do |postSort| %>
               
             <div class="row text-muted" style="margin-left: 20px; margin-right: 10px; margin-bottom: 10px;">
               <div class="col-sm-5 textHidden">
@@ -151,6 +151,13 @@
                   <% end %>
 
 <script>
+$("label").click(function(){
+    if ($(this).hasClass("badgeHighlight")){
+      $(this).removeClass("badgeHighlight");
+    }else{
+      $(this).addClass("badgeHighlight");
+    }
+	})
 
 $("#selected").click(function(){
     var lists = new Array;

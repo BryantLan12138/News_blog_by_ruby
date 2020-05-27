@@ -69,8 +69,8 @@ class PostsController < ApplicationController
   
     def login_check
       if !logged_in?
-          flash[:warning] = "You should login first to see the content!"
-          redirect_to root_path
+          flash[:warning] = "You should login first to do the following actions !"
+          redirect_to login_url
       end
     end
     

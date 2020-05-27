@@ -1,4 +1,7 @@
 class StaticPagesController < ApplicationController
+  before_action :login_check, only: [:show, :new, :create]
+  before_action :find_post, only: [:destroy]
+  
   def home
     if params[:keywords].nil?
       @posts = Post.where(post_id: nil).order("created_at DESC")
