@@ -37,6 +37,15 @@
         <%= render :partial => 'static_pages/partials/links'%>
       </div>
     </div>
+          <%= form_tag(selected_topics_url, method: "get", id:"topics_list") do %>
+            <%= hidden_field_tag :topics %>
+            <%= submit_tag("submit",:class => "submithidden") %>
+          <% end %>
+        
+          <%= form_tag(root_url, method: "get", id:"search") do %>
+              <%= hidden_field_tag :keywords %>
+              <%= submit_tag("submit",:class => "submithidden") %>
+          <% end %>
   </body>
 </html>
 <script>
