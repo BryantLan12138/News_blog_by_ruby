@@ -44,7 +44,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.where("post_id is NULL")
     @comments = @user.posts.where("post_id is NOT NULL")
+    respond_to do |format|
+      format.js {render layout: false}
+    end
+  end
 
+  
+  def commentstome
+    @user = User.find(params[:id])
+    @commtome = Post.where('post_id is NOT NULL')
     respond_to do |format|
       format.js {render layout: false}
     end
@@ -62,9 +70,14 @@ class UsersController < ApplicationController
     @user = current_user
     @comments = @user.posts.where("post_id is NOT NULL")
   end
-  
-  def commentstome
-    @commtome = Post.where('post_id is NOT NULL')
+
+  def my_comments
+    @user = current_user
+    @comments = @user.posts.where("post_id is NOT NULL")
+  end
+
+  def settings
+    @user = current_user
   end
 
   private
@@ -89,18 +102,6 @@ class UsersController < ApplicationController
     redirect_to(root_url) unless current_user?(@user)
   end
 
-
-
-  def mycomments
-    @user = current_user
-    @comments = @user.posts.where("post_id is NOT NULL")
-  end
-  
-  def commentstome
-    @commtome = Post.where('post_id is NOT NULL')
-  end
-
-  helper_method :mycomments
 end
 
 

@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody>
-                <% mycomments.each do |mycomment| %>
+                <% @comments.each do |mycomment| %>
                 <tr>
                     <td scope="row"><%= mycomment.created_at.strftime("%d/%m/%Y") %></td>
                     <td class="text-right"><%= link_to Post.find_by(id: mycomment.post_id).title, post_url(mycomment.post_id) %> comment:</td>

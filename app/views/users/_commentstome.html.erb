@@ -1,0 +1,24 @@
+<div class="col-sm-6 col-md-6 col-lg-6">
+    <h1>Comments to me</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="2"><%= @user.name %> recent comments:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @commtome.each do |comment| %>
+            <tr>
+                <td scope="row"><%= comment.created_at.strftime("%d/%m/%Y") %></td>
+                <td class="text-right">
+                    <%= link_to Post.find_by(id: comment.post_id).title, post_url(comment.post_id) %> comment:</td>
+                <td>
+                    <p class="showPost text-muted">
+                        <%= comment.content.to_s %>
+                    </p>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

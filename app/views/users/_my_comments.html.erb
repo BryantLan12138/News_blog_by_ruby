@@ -1,0 +1,21 @@
+<div class="col-sm-12 col-md-12 col-lg-12">
+    <h1>My Comments</h1>
+    <table class="table">
+      <thead>
+          <tr>
+              <th colspan="2"><%= @user.name %> recent comments:</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% @comments.each do |mycomment| %>
+          <tr>
+              <td scope="row"><%= mycomment.created_at.strftime("%d/%m/%Y") %></td>
+              <td class="text-right"><%= link_to Post.find_by(id: mycomment.post_id).title, post_url(mycomment.post_id) %> comment:</td>
+              <td><p class = "showPost text-muted">
+                <%= mycomment.content.to_s %>
+              </p></td>
+          </tr>
+          <% end %>
+      </tbody>
+  </table>
+  </div>

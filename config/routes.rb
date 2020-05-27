@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     member do
       get 'my_profile', to: 'users#my_profile'
       get 'my_posts', to: 'users#my_posts'
+      get 'my_comments', to: 'users#my_comments'
+      get 'settings', to: 'users#settings'
+      get 'commentstome', to: 'users#commentstome'
     end
   end
 
