@@ -9,25 +9,10 @@
             <a href="#" class="dropdown-toggle anime" data-toggle="dropdown">
             News <b class="caret"></b>
             </a>
-            <ul class="dropdown-menu">
-              
-              
-              <% topic_list = Hash.new() %>
+            <ul class="dropdown-menu">     
               <% Topic.all.each do |topic| %>
-                <% views = [] %>
-                <% if topic.post.present? %>
-                  <% topic.post.each do |ppp| %>
-                    <% if ppp.post_id.nil? %>
-                      <% views << ppp.view.to_i %>
-                    <% end %>
-                  <% end %>
-                <% end %>
-                <% sum = eval views.join("+") %>
-                <% topic_list.store(topic.id, sum.to_i) %>
+              <li><%= link_to topic.name, "#" , class: "text-center nav-link "%></li>
               <% end %>
-
-              
-            
             </ul>
           </li>
           
