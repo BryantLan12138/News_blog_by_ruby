@@ -1,31 +1,18 @@
 
-<br><br>
-
-<div class="postPage">
-<div class="row">
-  <div class = "col-sm-8"><br>
-  
-    <div class="row">
-      <div class="col-sm-2"><%= link_to "Recent Posts", news_path, class:"btn btn-primary"%></div>
-      
-      <div class="col-sm-2">
-        
-        <%= link_to "Selected Posts","#", class:"btn btn-primary active btnHighlight", id: "selected" %>
-
-      </div>
-      <% if logged_in? %>
-        <div class="col-sm-2"><%= link_to "My Settings", edit_user_url(current_user.id), class:"btn btn-primary" %></div>
-      <% end %>
-      <div class="col-sm-2">
-        
-        
-          <input type="text" class="form-control" placeholder="search..." />
-        
-        
-      </div>
-      <div class="col-sm-2"><%= link_to "New Post", new_post_path, class:"btn btn-success" %></div>
-    </div>
-    <br><br>
+ <div class="container home-grid">
+      <div class="row">
+        <div class="col-sm-8">
+          <nav>
+            <ul class="nav navbar-nav my-auto home-nav">
+              <li><%= link_to "Recent Post", root_path %></li>
+              <li><%= link_to "Selected Post", "#", id: "selected" %></li> 
+              <% if logged_in? %>
+                <li><%= link_to "My Settings",   edit_user_url(current_user.id) %></li>
+              <% end %>
+              <li><input type="text" class="form-control search" placeholder="search..." id="key_word_search" value="<%= @pervious_input %>" / > </li>  
+              <li><%= link_to "New Post", new_post_path, class: "new_post" %></li>
+            </ul>
+          </nav>
 
 
 <% @topic_ids.each do |topic_id| %>
