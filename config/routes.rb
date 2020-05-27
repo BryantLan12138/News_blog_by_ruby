@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get   '/login', to: 'sessions#new'
   post  '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  
 
 
   get '/post/new', to: 'posts#new'
@@ -26,6 +27,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/selected_topics', to: 'posts#selectedPost'
+  resources :users
   resources :posts do
     member do
       get :selectedPost

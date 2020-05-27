@@ -50,7 +50,7 @@
         <%= f.hidden_field :superpid, :value => @post.superpid %>
         <%= f.text_area :content, :id => "atextarea", class: 'form-control noresize', size: "50x20", placeholder:"Enter your comment here..." %><br>
         <%= f.submit "Add Comment", class: "btn btn-info" %>&nbsp&nbsp&nbsp&nbsp
-        <%= link_to "Cancel", news_path, class: "btn btn-warning"  %>
+        <%= link_to "Cancel", root_path, class: "btn btn-warning"  %>
     <% end %>
     <br><br>
     <% if @post.post_id.nil? %>

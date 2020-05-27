@@ -11,7 +11,7 @@ class PostsController < ApplicationController
       @list = Post.where(post_id: nil).order("view DESC")
       @topics = Topic.all
     else
-      redirect_to news_path
+      redirect_to root_path
     end
     
   end
@@ -69,8 +69,8 @@ class PostsController < ApplicationController
   
     def login_check
       if !logged_in?
-          flash[:warning] = "You should login first to see the content!"
-          redirect_to root_path
+          flash[:warning] = "You should login first to do the following actions !"
+          redirect_to login_url
       end
     end
     
