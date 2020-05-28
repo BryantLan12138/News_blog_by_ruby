@@ -53,6 +53,13 @@ p {
     line-height: 1.7em;
 }
 
+ul li {
+    list-style-type: none;
+    a {
+        text-decoration: none;
+    }
+}
+
 #logo {
     float: left;
     margin-right: 10px;
@@ -66,6 +73,12 @@ p {
 #logo:hover {
     color: #fff;
     text-decoration: none;
+}
+
+.dropdown-toggle p {
+    font-size: 1em;
+    line-height: 1;
+    margin: 0;
 }
 
 /*footer */
@@ -199,6 +212,8 @@ input {
     width: auto;
     margin-left: 0;
   }
+
+  // Post section navifgation bar
 
   .news-list {
       margin-right: 5em;
