@@ -25,10 +25,10 @@
         <br>
       <% end %>
     <p class = "showPost text-muted">
-      <% if @post.user.image.present? %>
+      <% if @post.user.image_url.present? %>
         <%= image_tag(@post.user.image.to_s, :class => "avatar") %>&nbsp&nbsp&nbsp&nbsp
       <% else %>
-        <%= image_tag "default.png", :class => "avatar", :width => "50" , :height => "50" %>&nbsp&nbsp&nbsp&nbsp
+        <%= image_tag "default.png", :class => "avatar" %>&nbsp&nbsp&nbsp&nbsp
       <% end %>
       &nbsp&nbsp&nbsp&nbsp
       
@@ -59,10 +59,10 @@
         <p>
           <div class = "row commBorder">
             <div class="col-sm-8"><br><br>
-                <% if comment.user.image.present? %>
-                  <%= image_tag(comment.user.image, :class => "avatar") %>&nbsp&nbsp&nbsp&nbsp
+                <% if comment.user.image_url.present? %>
+                  <%= image_tag(comment.user.image.to_s, :class => "avatar") %>&nbsp&nbsp&nbsp&nbsp
                 <% else %>
-                  <%= image_tag "default.png", :class => "avatar", :width => "50" , :height => "50" %>&nbsp&nbsp&nbsp&nbsp
+                  <%= image_tag "default.png", :class => "avatar" %>&nbsp&nbsp&nbsp&nbsp
                 <% end %>
               <%= link_to comment.user.name, user_url(comment.user.id) %>:<br><br>
               <% if comment.post_id == @post.id %>
