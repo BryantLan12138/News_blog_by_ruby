@@ -22,7 +22,7 @@
 
 
 <%= form_for(@user) do |f| %>
-    
+    <%= render 'layouts/errors' %>
     <div id="myTabContent" class="tab-content">
     	<div class="tab-pane fade in active" id="PI">
     	  <br>
@@ -52,7 +52,8 @@
         <% end %>
 
     	</div>
-    	<div class="tab-pane fade" id="passwd">
+      <div class="tab-pane fade" id="passwd">
+      <%= render 'layouts/errors' %>
     	  <br><br>
     	    <%= f.label :password %>
           <%= f.password_field :password, class: 'form-control', placeholder:"enter your password" %><br>
@@ -65,7 +66,7 @@
           <br><br>
             <%= f.label :Typeofcard %>
             <%= f.text_field :card, class: 'form-control', placeholder:"Please enter your full name" %><br>
-            <%= f.label :StudentEmail %>
+            <%= f.label :YourEmail %>
             <%= f.email_field :email, class: 'form-control', placeholder:"Please enter your student email" %><br>
     		<%= f.label :image, "Upload" %><br>
             <%= f.file_field :image %>
