@@ -4,7 +4,7 @@
       <%= pluralize(@post.errors.count, "item") %> are not legal, please fix them by hints below:<br>
       <ul>
         <% @post.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li><br>
+          <li><%= msg %></li>
         <% end %>
       </ul>
     </div>

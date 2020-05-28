@@ -37,7 +37,9 @@ class PostsController < ApplicationController
 
     if @post.save
       if @post.topic.empty?
-        PostsTopic.create(topic_id:16, post_id: @post.id)
+
+        redirect_to post_new_path
+        flash[:danger] = "You cannot leave the title empty."
       end
       flash[:success] = "You just made a new post!"
       redirect_to root_path(Post.find_by(superpid: @post.superpid).id)
