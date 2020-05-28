@@ -1,0 +1,33 @@
+<div class="post-grid-container">
+    <div class="image">
+      <% if DateTime.now - 30.days <= post.created_at %>
+        <% if post.user.image.present? %>
+          <%= image_tag(post.user.image.to_s, :class => "avatar_img") if post.user.image.present? %>
+        <% else %>
+          <%= image_tag "default.png", :class => "avatar_img", :width => "50" , :height => "50" %><br>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="title">
+      <% if logged_in? %>
+        <p><%= link_to post.title, post_url(post.id), class:"title" %></p>
+      <% else %>
+        <p><%= link_to post.title, post_url(post.id), class:"title-visitors" %></p>
+      <% end %>
+    </div>
+    <div class="user_name">
+      <%= link_to post.user.name, user_url(post.user.id), class:"text-muted" %>
+    </div>
+    <div class="date">
+      <%= post.created_at.strftime('%Y-%m-%d').to_s %>
+    </div>
+    <div class="topic">
+      <%= post.topic[0].name %>
+    </div>
+    <div class="socials">
+      <span class="glyphicon glyphicon-comment"></span>
+      <%= Post.where("post_id is NOT NULL AND superpid = ?", post.superpid).count %>
+      <span class="glyphicon glyphicon-eye-open"></span>
+      <%= post.view %>
+    </div>
+  </div>

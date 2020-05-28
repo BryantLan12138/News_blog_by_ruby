@@ -1,163 +1,54 @@
 <% provide(:title, "Home") %>
 <html>
-  <head>
-    <title><%= yield(:title) %></title>
-  </head>
+
+<head>
+  <title><%= yield(:title) %></title>
+</head>
+
   <body>
-  
-
-    <div class="container home-grid">
-      <div class="row">
-        <div class="col-sm-8">
-          <nav>
-            <ul class="nav navbar-nav my-auto home-nav">
-              <li><%= link_to "Recent Post", root_path %></li>
-              <li><%= link_to "Selected Post", "#", id: "selected" %></li> 
-              <% if logged_in? %>
-                <li><%= link_to "My Settings",   edit_user_url(current_user.id) %></li>
-              <% end %>
-              <li><input type="text" class="form-control search" placeholder="search..." id="key_word_search" value="<%= @pervious_input %>" / > </li>  
-              <li><%= link_to "New Post", new_post_path, class: "new_post" %></li>
-            </ul>
-          </nav>
-    
-    <div id="allposts">
-      <% @posts.each do |apost| %>
-        <div class="card">
-          <div class="card-body">
-              <div class="text-left">
-                <div class = "row" id = "postarea">
-                  <div class = "col-sm-4">
-                  <% if DateTime.now - 30.days <= apost.created_at %>
-                    <% if apost.user.image.present? %>
-                      <%= image_tag(apost.user.image.to_s, :class => "avatar3") if apost.user.image.present? %>
-                    <% else %>
-                      <%= image_tag "default.png", :class => "avatar3", :width => "50" , :height => "50" %><br>
-                    <% end %>
-                    
-                  </div>
-                  
-                  <% if logged_in? %>
-                    <p><%= link_to apost.title, post_url(apost.id), class:"title" %></p>
-                  <% else %>
-                    <p><%= link_to apost.title, post_url(apost.id), class:"title-visitors" %></p>
-                  <% end %>
-                  
-                  <p class="text-muted">
-                    <%= link_to apost.user.name, user_url(apost.user.id), class:"text-muted" %>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp
-                    <%= apost.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s %>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp
-                    <%= apost.topic[0].name %>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="glyphicon glyphicon-comment"></span>
-                    <%= Post.where("post_id is NOT NULL AND superpid = ?", apost.superpid).count %>
-                    &nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                    <%= apost.view %>
-                  </p>
-                </div>
-              </div>
-              
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-
-
-        
+    <div class="home-grid-container">
+      <div class="posts">
+        <% @posts.each do |post| %>
+          <%= render :partial => 'static_pages/partials/post_item', :locals => {:post => post} %>
+        <% end %>
       </div>
-  </div>
-  
-          <div class="col-sm-4">
-          <div class="postList">
-            
-           
-            <h3>Recent Members</h3>
-              <div class="container-fluid fixed-top">
-              <div class="row">
-                <% User.all.first(12).each do |auser| %>
-            <div class="col-sm-3 text-center">
-              <% if auser.image.present? %>
-                <%= image_tag(auser.image.to_s, :class => "avatar3") if auser.image.present? %><br>
-              <% else %>
-                <%= image_tag "default.png", :class => "avatar3", :width => "50" , :height => "50" %><br>
-              <% end %>
-              <%= link_to auser.name, user_url(auser.id), class:"text-muted" %>
-              <span>(<%= auser.logincount %>)</span>
-            </div>
+      <div class="navbar">
+        <%= render :partial => 'static_pages/partials/navbar'%>
+      </div>
+      <div class="recent-members">
+        <h2>Recent Members</h2>
+        <div id="rec-mem-container">
+          <!-- Checks to see if user has a profile iamge -->
+          <% User.all.first(12).each do |user| %>
+            <%= render :partial => 'static_pages/partials/recent_members', :locals => {:user => user} %>
           <% end %>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="postList">
-            <h3>Topics</h3>
-            <div class="row">
-              <% @topics.each do |topic| %>
-                <div class="col-sm-5 text-center">            
-                <label class="badge" for="<%= topic.id %>"><%= topic.name %></label>
-                <%= check_box_tag topic.id, topic.id %>
-                </div>
-              <% end %>
-          </div>
-          </div>
-
-          
-          <div class="postList">
-            <h3>Posts</h3>
-            <div class = "container side-container" id = "side-container">
-            <div class="row">
-              <% @list.order("view ASC").first(5).each do |postSort| %>
-              
-            <div class="row text-muted" style="margin-left: 20px; margin-right: 10px; margin-bottom: 10px;">
-              <div class="col-sm-5 textHidden">
-                <span><%= link_to postSort.title, post_url(postSort.id), class:"text-muted" %></span>
-              </div>
-              <div class="col-sm-5 text-right">
-                <span class="glyphicon glyphicon-eye-open"></span>
-                <%= postSort.view %>
-              </div>
-            </div>  
-           <% end %>
-          </div>
-          </div>
-          </div>
-
-          <div class="postList">
-            <h3>Links</h3><br>
-            <div class = "row">
-                <div class="col-4 side-container">
-                    <%= link_to "Outlook", "https://outlook.live.com/", class:"badge btn btn-sm" %>
-                    <%= link_to "RMIT", "https://www.rmit.edu.au/", class:"badge btn btn-sm" %>
-                    <%= link_to "Stack", "https://stackoverflow.com/", class:"badge btn btn-sm" %>
-                    <%= link_to "RoR", "https://rubyonrails.org/", class:"badge btn btn-sm" %>
-                    
-                    <%= link_to "MS Docs", "https://docs.microsoft.com/", class:"badge btn btn-sm" %>
-                </div>
-          </div>
-
-          </div>
-                  
-                  <%= form_tag(selected_topics_url, method: "get", id:"topics_list") do %>
-                      <%= hidden_field_tag :topics %>
-                      <%= submit_tag("submit",:class => "submithidden") %>
-                  <% end %>
-                  
-                  <%= form_tag(root_path, method: "get", id:"search") do %>
-                      <%= hidden_field_tag :keywords %>
-                      <%= submit_tag("submit",:class => "submithidden") %>
-                  <% end %>
-
+        </div>
+      </div>
+      <div class="topics">
+        <h2>Topics</h2>
+        <% @topics.each do |topic| %>
+          <%= render :partial => 'static_pages/partials/topics', :locals => {:topic => topic} %>
+        <% end %>
+      </div>
+      <div class="top-posts">
+        <%= render :partial => 'static_pages/partials/top_posts'%>
+      </div>
+      <div class="links">
+        <%= render :partial => 'static_pages/partials/links'%>
+      </div>
+    </div>
+          <%= form_tag(selected_topics_url, method: "get", id:"topics_list") do %>
+            <%= hidden_field_tag :topics %>
+            <%= submit_tag("submit",:class => "submithidden") %>
+          <% end %>
+        
+          <%= form_tag(root_url, method: "get", id:"search") do %>
+              <%= hidden_field_tag :keywords %>
+              <%= submit_tag("submit",:class => "submithidden") %>
+          <% end %>
+  </body>
+</html>
 <script>
-$("label").click(function(){
-    if ($(this).hasClass("badgeHighlight")){
-      $(this).removeClass("badgeHighlight");
-    }else{
-      $(this).addClass("badgeHighlight");
-    }
-	})
 
 $("#selected").click(function(){
     var lists = new Array;
@@ -176,16 +67,4 @@ $("#selected").click(function(){
       $("#search").submit();
 	  });
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
 </script>
-
- </body>
-</html>
