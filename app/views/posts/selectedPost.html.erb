@@ -9,15 +9,17 @@
     <div class="home-grid-container">
       <div class="posts">
         
-<% @topic_ids.each do |topic_id| %>
-  <% if !Topic.find(topic_id).post.all.nil?%>
-    <% Topic.find(topic_id).post.all.each do |selectedpost|%>
-      <% if selectedpost.post_id.nil? %>
-        <%= render :partial => 'static_pages/partials/post_item', :locals => {:post => selectedpost} %>
-      <% end %>       
-    <% end %>
-  <% end %>
-<% end %>
+        <% @topic_ids.each do |topic_id| %>
+          <% if topic_id.to_i != 16 %>
+            <% if !Topic.find(topic_id).post.all.nil?%>
+              <% Topic.find(topic_id).post.all.each do |selectedpost|%>
+                <% if selectedpost.post_id.nil? %>
+                  <%= render :partial => 'static_pages/partials/post_item', :locals => {:post => selectedpost} %>
+                <% end %>       
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
       </div>
       <div class="navbar">
         <%= render :partial => 'static_pages/partials/navbar'%>

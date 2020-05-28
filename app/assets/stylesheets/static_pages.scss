@@ -1,3 +1,4 @@
+
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
@@ -23,7 +24,7 @@
 .home-grid-container {
     display: grid;
     grid-template-columns: 1fr .66fr;
-    grid-template-rows: .1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: .3fr 1fr 1fr 1fr 1fr;
     gap: 1px 1px;
     grid-template-areas: "navbar navbar" "posts recent-members" "posts topics" "posts top-posts" "posts links";
 
@@ -83,39 +84,45 @@
   
 // Post navigation
 
-.post-nav {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-between;
-    align-content: center;
-    margin: 1em 3em 0 3em;
+#horizontal-bar {
+    list-style-type: none;
+    margin-top: 3em;
+    padding: 0;
+    overflow: hidden;
+    li {
+        float: left;
+        
+        margin-right: 1em;
+        a {
+            background-color: #FFA500;
+            border-radius: 5px;
+            color: white;
+            padding: 1.2em 1.5em;
+            text-decoration: none;
+            text-align: center;
+        }
+        a,
+        .search {
+            display:inline-block;
+            font-weight: bold;
+
+        }
+    }
 }
 
-.post-buttons {
-    text-decoration: none;
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    width: 100px;
-    height: 60px;
-    padding: 1em 2em;
-    background-color: #FFA500;
-    border-radius: 5px;
-    color: white;
-    font-size: bold;
-    line-height: 2;
+#horizontal-bar a:hover {
+    background-color:#C57400;
 }
 
-.post-buttons:hover {
-    text-decoration: none;
-    background-color: #C57400;
-    color: white;
+#search {
+    margin-bottom: 0;
+    margin-left: 10em;
+    text-align: left;
+
 }
 
-.search {
-    width: 300px;
-    height: 60px;
+.post-button {
+    margin-left: 10em;
 }
   
 // Profile image (avatar)
