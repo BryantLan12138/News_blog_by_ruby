@@ -1,4 +1,61 @@
-<br><br><br>
+<div class="grid-container">
+  <% if @post.post_id.nil? %>
+  <div class="Heading">
+    <h1><%= @post.title %></h1>
+  </div>
+  <div class="post_details">
+    <span>
+      <span class="social-span">
+        Written by: <%= @post.user.name.capitalize %>
+      </span>
+      
+    <span class="badge social-span"><%= @post.topic[0].name %></span>
+    <span class="social-span">
+      <span class="glyphicon glyphicon-comment"></span>
+      <%= @comments.count %>
+    </span>
+    <span class="social-span">
+      <span class="glyphicon glyphicon-eye-open">
+      </span><%= @post.view %>
+    </span>
+  </span>
+  </div>
+  <div class="comments">
+    <h3>Post</h3>
+    <p class = "showPost text-muted">
+      <% if @post.user.image.present? %>
+        <%= image_tag(@post.user.image.to_s, :class => "avatar_img")%>
+      <% else %>
+        <%= image_tag "default.png", :class => "avatar_img"%>
+      <% end %>
+
+      
+      <%= link_to @post.user.name.capitalize, user_url(@post.user.id), class:"text-muted" %>
+      posted:
+    </p>
+  
+      <%= simple_format @post.content.to_s, class: "postcontent" %>
+
+
+  </div>
+  <div class="comment_form">
+    <h3>Add Comments:</h3>
+    <%= form_for @comment do |f| %>
+        <%= render 'layouts/errorsPost' %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+        <%= f.hidden_field :topic_ids, :value => @post.topic[0].id %>
+        <%= f.hidden_field :title, :value => @post.title %>
+        <%= f.hidden_field :superpid, :value => @post.superpid %>
+        <%= f.text_area :content, :id => "atextarea", class: 'form-control noresize', size: "50x20", placeholder:"Enter your comment here..." %>
+        <%= f.submit "Add Comment", class: "btn btn-info" %>
+        <%= link_to "Cancel", root_path, class: "btn btn-warning"  %>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+
+<!-- 
 <div class="row">
 <div class="col-sm-8">
   <div class="card">
@@ -7,7 +64,7 @@
     
       <% if @post.post_id.nil? %>
         <h3><%= @post.title %></h3>
-        <br>
+        
         <div class="row">
           <div class = "col-sm-1">
             <span class="badge"> <%= @post.topic[0].name %> </span>
@@ -16,21 +73,21 @@
           <div class=" col-sm-10 text-muted text-right">
               <span class="glyphicon glyphicon-comment"></span>
               <%= @comments.count %>
-              &nbsp&nbsp&nbsp&nbsp
-              &nbsp&nbsp&nbsp&nbsp
+
+
               <span class="glyphicon glyphicon-eye-open"></span>
               <%= @post.view %>
            </div>
         </div>
-        <br>
+        
       <% end %>
     <p class = "showPost text-muted">
       <% if @post.user.image.present? %>
-        <%= image_tag(@post.user.image.to_s, :class => "avatar") %>&nbsp&nbsp&nbsp&nbsp
+        <%= image_tag(@post.user.image.to_s, :class => "avatar_img")%>
       <% else %>
-        <%= image_tag "default.png", :class => "avatar", :width => "50" , :height => "50" %>&nbsp&nbsp&nbsp&nbsp
+        <%= image_tag "default.png", :class => "avatar_img"%>
       <% end %>
-      &nbsp&nbsp&nbsp&nbsp
+
       
       <%= link_to @post.user.name, user_url(@post.user.id), class:"text-muted" %>&nbsp&nbsp&nbsp&nbsp
       <%= @post.created_at.to_date %>
@@ -39,8 +96,8 @@
     <p id = "postcontent">
       <%= simple_format @post.content.to_s %>
     </p>
-    <br><br>
-    <h3>Add Comments:</h3><br><br>
+    
+    <h3>Add Comments:</h3>
     <%= form_for @comment do |f| %>
         <%= render 'layouts/errorsPost' %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -48,34 +105,34 @@
         <%= f.hidden_field :topic_ids, :value => @post.topic[0].id %>
         <%= f.hidden_field :title, :value => @post.title %>
         <%= f.hidden_field :superpid, :value => @post.superpid %>
-        <%= f.text_area :content, :id => "atextarea", class: 'form-control noresize', size: "50x20", placeholder:"Enter your comment here..." %><br>
+        <%= f.text_area :content, :id => "atextarea", class: 'form-control noresize', size: "50x20", placeholder:"Enter your comment here..." %>
         <%= f.submit "Add Comment", class: "btn btn-info" %>&nbsp&nbsp&nbsp&nbsp
         <%= link_to "Cancel", root_path, class: "btn btn-warning"  %>
     <% end %>
-    <br><br>
+    
     <% if @post.post_id.nil? %>
-      <h3><%= @comments.count %> Comments:</h3><br><br>
+      <h3><%= @comments.count %> Comments:</h3>
       <% @comments.each do |comment| %>
         <p>
           <div class = "row commBorder">
-            <div class="col-sm-8"><br><br>
+            <div class="col-sm-8">
                 <% if comment.user.image.present? %>
                   <%= image_tag(comment.user.image, :class => "avatar") %>&nbsp&nbsp&nbsp&nbsp
                 <% else %>
                   <%= image_tag "default.png", :class => "avatar", :width => "50" , :height => "50" %>&nbsp&nbsp&nbsp&nbsp
                 <% end %>
-              <%= link_to comment.user.name, user_url(comment.user.id) %>:<br><br>
+              <%= link_to comment.user.name, user_url(comment.user.id) %>:
               <% if comment.post_id == @post.id %>
                 <%= simple_format comment.content %>
               <% else %>
                 reply @<%= Post.find(comment.post_id).user.name %>: <%= simple_format comment.content %>
               <% end %>
-              <br>
-              <br>
+              
+              
               <span class="text-muted"><%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s %></span>
-              <br>
+              
             </div>
-            <div class="col-sm-4 text-muted"><br>
+            <div class="col-sm-4 text-muted">
                   <span class="glyphicon glyphicon-comment">
                     <%= link_to 'reply', post_url(comment.id), class:"text-muted" %>
                   </span>
@@ -84,7 +141,7 @@
         </p>
       
       <% end %>
-      <br><br><br>
+      
     <% end %>
     
  </div>   
@@ -92,13 +149,7 @@
 
   </div>
   </div>
-  
-    <div class="col-sm-4">
-      
-      <%= render 'layouts/side_blocks'  %>
-      
-      
-    </div>
+
    </div>   
 
   
@@ -115,4 +166,4 @@ window.tinymce.init({
         
         
 
-</script>
+</script> -->

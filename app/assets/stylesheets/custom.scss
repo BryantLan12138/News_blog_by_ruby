@@ -68,6 +68,12 @@ p {
     text-decoration: none;
 }
 
+.dropdown-toggle p {
+    font-size: 1em;
+    line-height: 1;
+    margin: 0;
+}
+
 /*footer */
 footer {
     margin-top: 45px;
@@ -199,6 +205,8 @@ input {
     width: auto;
     margin-left: 0;
   }
+
+  // Post section navifgation bar
 
   .news-list {
       margin-right: 5em;
