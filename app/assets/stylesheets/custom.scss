@@ -53,6 +53,13 @@ p {
     line-height: 1.7em;
 }
 
+ul li {
+    list-style-type: none;
+    a {
+        text-decoration: none;
+    }
+}
+
 #logo {
     float: left;
     margin-right: 10px;

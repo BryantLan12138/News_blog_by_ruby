@@ -7,12 +7,14 @@
 
   <body>
     <div class="home-grid-container">
+      
       <div class="posts">
         <% @posts.each do |post| %>
           <%= render :partial => 'static_pages/partials/post_item', :locals => {:post => post} %>
         <% end %>
       </div>
       <div class="navbar">
+        <%= render 'layouts/error_message' %>
         <%= render :partial => 'static_pages/partials/navbar'%>
       </div>
       <div class="recent-members">
