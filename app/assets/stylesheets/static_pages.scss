@@ -203,3 +203,10 @@
 .socials {
     text-align: right;
 }
+
+// Hidden form
+
+form#topics_list,
+.submithidden{
+    display: none;
+}
