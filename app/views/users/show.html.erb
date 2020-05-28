@@ -1,77 +1,31 @@
-<%provide(:title,@user.name)%>
-    <div class="row">
-        <div class="container">
-            <div class="row">
-                <h1 class="text-center"><%= image_tag(@user.image_url.to_s, class: "prof-img") %></h1>
-                <h1><%=@user.name%></h1>
-                <p class="text-center"><i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <%=@user.created_at.strftime("%d/%m/%Y") %>  |     <i class="fa fa-map-marker" aria-hidden="true"></i>  <%=@user.city%></p>
-            </div>
-
-
-<div class="row">
-
-  <!--Post Area-->
-  <div class="col-sm-6">
-    
-    
-    <div class="card">
-      <div class="card-body">
-        <h4>Recent Posts: </h4><br><br>
-        
-          <% @posts.each do |mypost| %>
-            
-              <div class="row">
-                <div class="col-sm-10">
-                  <%= link_to mypost.title, post_url(mypost.id), class:"text-muted" %>
-                  
-                </div>
-                
-                <div class="col-sm-2">
-                  <%= mypost.created_at.strftime("%d/%m/%Y") %>
-                </div>
-              </div>
-              <br>
-          <% end %>
-        
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <%= link_to 'My profile', my_profile_user_path, remote: true %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'My Posts', my_posts_user_path, remote: true %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'My Comments', my_comments_user_path, remote: true %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Comments to me', commentstome_user_path, remote: true %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a>
+        </li>
+      </ul>
     </div>
-    
-    
-  </div>
-  
-  
-  
-  <div class="col-sm-6">
-    
-    <div class="card">
-      <div class="card-body">
-        <h4>Recent Comments: </h4>
-        
-          <% @comments.each do |mycomment| %>
-            
-              <div class="row">
-                <div class="col-sm-12">
-                  <%= mycomment.created_at.strftime("%d/%m/%Y") %> in
-                  <%= link_to Post.find_by(id: mycomment.post_id).title, post_url(mycomment.post_id) %>
-                   comment:
-                   <p class = "showPost text-muted">
-                     <%= mycomment.content.to_s %>
-                   </p>
-                </div>
-              </div>
-              <br>
-          <% end %>
-        
-        
+    <div class="col-sm-10 col-md-10 col-lg-10">
+      
+      <div id="active-tab">
+        <%= render 'users/my_profile' %>
       </div>
+      
     </div>
-    
-    
-    
   </div>
-  
-  
 </div>
-
-<br><br><br><br>
+<%= render 'layouts/footer' %>

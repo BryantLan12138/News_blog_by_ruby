@@ -11,9 +11,77 @@ User.create!(
     email: "rad2020rmit@gmail.com",
     password: "Rails2020",
     password_confirmation: "Rails2020",
-    phone: "123456789012",
+    phone: "0435793732",
     admin: true
 )
+
+
+User.create!(
+    name: "Tom",
+    email: "Tom@gmail.com",
+    password: "Rails2020",
+    password_confirmation: "Rails2020",
+    phone: "0435793732",
+    admin: true
+)
+User.create!(
+    name: "Jerry",
+    email: "Jerry@gmail.com",
+    password: "Rails2020",
+    password_confirmation: "Rails2020",
+    phone: "0435793732",
+    admin: true
+)
+User.create!(
+    name: "Lynne",
+    email: "Lynne@gmail.com",
+    password: "Rails2020",
+    password_confirmation: "Rails2020",
+    phone: "0435793732",
+    admin: true
+)
+User.create!(
+    name: "Noctis",
+    email: "Noctis@gmail.com",
+    password: "Rails2020",
+    password_confirmation: "Rails2020",
+    phone: "0435793732",
+    admin: true
+)
+User.create!(
+    name: "Bryant",
+    email: "Bryant@gmail.com",
+    password: "Rails2020",
+    password_confirmation: "Rails2020",
+    phone: "0435793732",
+    admin: true
+)
+User.create!(
+    name: "Zhou",
+    email: "Zhou@gmail.com",
+    password: "Rails2020",
+    password_confirmation: "Rails2020",
+    phone: "0435793732",
+    admin: true
+)
+User.create!(
+    name: "ZhangThree",
+    email: "ZhangThree@gmail.com",
+    password: "Rails2020",
+    password_confirmation: "Rails2020",
+    phone: "0435793732",
+    admin: true
+)
+User.create!(
+    name: "LiFour",
+    email: "LiFour@gmail.com",
+    password: "Rails2020",
+    password_confirmation: "Rails2020",
+    phone: "0435793732",
+    admin: true
+)
+
+
 
 Topic.create( 
  [  
