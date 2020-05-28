@@ -28,8 +28,6 @@
       <% else %>
         <%= image_tag "default.png", :class => "avatar_img"%>
       <% end %>
-
-      
       <%= link_to @post.user.name.capitalize, user_url(@post.user.id), class:"text-muted" %>
       posted:
     </p>
@@ -52,6 +50,39 @@
         <%= link_to "Cancel", root_path, class: "btn btn-warning"  %>
     <% end %>
   </div>
+       <% if @post.post_id.nil? %>
+      <h3><%= @comments.count %> Comments:</h3><br><br>
+      <% @comments.each do |comment| %>
+        <p>
+          <div class = "row commBorder">
+            <div class="col-sm-8"><br><br>
+                <% if comment.user.image_url.present? %>
+                  <%= image_tag(comment.user.image_url, :class => "avatar") %>&nbsp&nbsp&nbsp&nbsp
+                <% else %>
+                  <%= image_tag "default.png", :class => "avatar" %>&nbsp&nbsp&nbsp&nbsp
+                <% end %>
+              <%= link_to comment.user.name, user_url(comment.user.id) %>:<br><br>
+              <% if comment.post_id == @post.id %>
+                <%= simple_format comment.content %>
+              <% else %>
+                reply @<%= Post.find(comment.post_id).user.name %>: <%= simple_format comment.content %>
+              <% end %>
+              <br>
+              <br>
+              <span class="text-muted"><%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S').to_s %></span>
+              <br>
+            </div>
+            <div class="col-sm-4 text-muted"><br>
+                  <span class="glyphicon glyphicon-comment">
+                    <%= link_to 'reply', post_url(comment.id), class:"text-muted" %>
+                  </span>
+            </div>
+           </div>
+        </p>
+      <% end %>
+      <% end %>
+
+
   <% end %>
 </div>
 
