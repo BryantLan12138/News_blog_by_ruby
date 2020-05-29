@@ -3,7 +3,7 @@
   <li><%= link_to "Selected", "#", id: "selected", class: "post-buttons"  %></li>
   <li>
     <% if logged_in? %>
-      <%= link_to "Settings", edit_user_url(current_user.id), class: "post-buttons"  %>
+      <%= link_to "Settings", current_user, class: "post-buttons"  %>
     <% end %>
   </li>
   <li>

@@ -63,14 +63,18 @@
     		
     	</div>
     	<div class="tab-pane fade" id="card">
-          <br><br>
-            <%= f.label :Typeofcard %>
-            <%= f.text_field :card, class: 'form-control', placeholder:"Please enter your full name" %><br>
-            <%= f.label :YourEmail %>
-            <%= f.email_field :email, class: 'form-control', placeholder:"Please enter your student email" %><br>
-    		<%= f.label :image, "Upload" %><br>
-            <%= f.file_field :image %>
-        <br><br>
+    	  
+    		<%= f.label :card, "Upload" %><br>
+        <%= f.file_field :card %>
+        
+        <% if @user.card_url.present? %>
+          <%= image_tag(@user.card_url, :class => "idcard") %><br>
+        <% else %>
+          <%= image_tag "upload.png", :class => "avatar2" %><br>
+        <% end %>        
+        
+
+    	</div>
                
         
 
