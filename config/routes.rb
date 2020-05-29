@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root  'static_pages#home'
   get   'sessions/new'
 
+  get   'password_resets/new'
+  get   'password_resets/edit'
+
   get   'users/new'
   get   'users/index'
 
@@ -35,4 +38,6 @@ Rails.application.routes.draw do
       get :selectedPost
     end
   end
+
+  resources :password_resets, only: [:new, :create, :edit, :update]
 end
