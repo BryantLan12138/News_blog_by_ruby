@@ -17,16 +17,15 @@ class PostsController < ApplicationController
   end
   
   
+
   def show
-    @posts = Post.where(post_id: nil).order("created_at DESC")
     @post = Post.find(params[:id])
     @post.view = @post.view + 1
     @post.save
     @comment = Post.new
-    @comments = Post.where("post_id is NOT NULL AND superpid = ?", @post.superpid).reverse
-    @list = Post.where(post_id: nil).order("view DESC")
-    @topics = Topic.all
+    @comments = Post.where("post_id is NOT NULL AND title = ?", @post.title).sort_by {|x| [x.created_at]}.reverse
   end
+
  
   def new
     @post = Post.new
@@ -40,7 +39,7 @@ class PostsController < ApplicationController
         PostsTopic.create(topic_id:16, post_id: @post.id)
       end
       flash[:success] = "You just made a new post!"
-      redirect_to post_url(Post.find_by(superpid: @post.superpid).id)
+      redirect_to post_url(Post.where("post_id is NULL AND title = ?",@post.title)[0].id)
     else
       @feed_items = []
       render new_post_path

@@ -1,6 +1,4 @@
-<div class="row">
-  <div class="col-sm-3"></div>
-  <div class="col-sm-6">
+
       <%= form_for post do |f| %>
         <%= render 'layouts/errorsPost' %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -12,19 +10,13 @@
         <%= f.text_field :title, class: 'form-control', placeholder:"Enter your post title here..." %><br>
         <%= f.label :content %>
         <%= f.text_area :content, :id=>"atextarea" ,class: 'form-control noresize', size: "50x20", placeholder:"Enter your post here..." %><br>
-        <%= f.submit yield(:button_text), class: "btn btn-info" %>&nbsp&nbsp&nbsp&nbsp
+        <%= f.submit yield(:button_text), class: "btn btn-info" %>
         <%= link_to "Cancel", news_path, class: "btn btn-warning"  %>
     <% end %>
-  </div>
-</div>
-<br><br>
-<script>
-window.tinymce.init({
-            selector: '#atextarea',
-            menubar: false,
-            mode: 'textareas',
-            branding: false,
-            plugins: 'link lists textcolor wordcount colorpicker textpattern',
-            toolbar: 'bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
-        });
-</script>
+
+    <script>
+      tinymce.init({
+        selector: '#atextarea'
+        encoding: 'xml'
+      });
+    </script>
