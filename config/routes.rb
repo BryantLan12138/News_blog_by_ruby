@@ -35,4 +35,6 @@ Rails.application.routes.draw do
       get :selectedPost
     end
   end
+
+  resources :password_resets, only: [:new, :create, :edit, :update]
 end
