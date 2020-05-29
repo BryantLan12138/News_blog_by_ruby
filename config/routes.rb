@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root  'static_pages#home'
   get   'sessions/new'
 
+  get   'password_resets/new'
+  get   'password_resets/edit'
+
   get   'users/new'
   get   'users/index'
 
