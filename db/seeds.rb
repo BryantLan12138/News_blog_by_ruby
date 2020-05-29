@@ -95,7 +95,7 @@ Topic.create(
 {name: 'Web' },
 {name: 'M.L.' },
 {name: 'Joke' }, 
-{name: 'Reat' }, 
+{name: 'React' }, 
 {name: 'Vue' }, 
 {name: 'Node' },
 {name: 'iOS' },
