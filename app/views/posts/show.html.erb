@@ -43,6 +43,7 @@
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :post_id, :value => @post.id %>
         <%= f.hidden_field :topic_ids, :value => @post.topic[0].id %>
+        <%= f.hidden_field :superpid, :value => @post.superpid %>
         <%= f.hidden_field :title, :value => @post.title %>
         <%= f.text_area :content, :id => "reply", class: 'form-control noresize', size: "50x20", placeholder:"Enter your comment here..." %>
         <%= f.submit "Add Comment", class: "btn btn-info" %>
