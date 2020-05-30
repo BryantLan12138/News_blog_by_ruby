@@ -10,9 +10,29 @@
             News <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">     
+              <% topic_list = Hash.new() %>
               <% Topic.all.each do |topic| %>
-              <li><%= link_to topic.name, "#" , class: "text-center nav-link "%></li>
+                <% views = [] %>
+                <% if topic.post.present? %>
+                  <% topic.post.each do |ppp| %>
+                    <% if ppp.post_id.nil? %>
+                      <% views << ppp.view.to_i %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <% sum = eval views.join("+") %>
+                <% topic_list.store(topic.id, sum.to_i) %>
               <% end %>
+              
+              <% top1 = topic_list.max_by { |k,v| v }[0] %>
+              <% topic_list.delete(top1) %>
+              <% top2 = topic_list.max_by { |k,v| v }[0] %>
+              
+            <li><%= link_to Topic.find(top1.to_i).name, root_path %></li><br>
+            <% if topic_list[top2].to_i != 0 %>
+              <li><%= link_to Topic.find(top2.to_i).name, root_path %></li>
+            <% end %>
+            
             </ul>
           </li>
           

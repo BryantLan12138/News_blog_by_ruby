@@ -53,6 +53,13 @@ p {
     line-height: 1.7em;
 }
 
+ul li {
+    list-style-type: none;
+    a {
+        text-decoration: none;
+    }
+}
+
 #logo {
     float: left;
     margin-right: 10px;
@@ -100,12 +107,12 @@ footer ul li {
     margin-left: 15px;
 }
 
-$gray-medium-light:#eaeaea;
+$gray-medium-light: #eaeaea;
 
-@mixin box_sizing{
-    -moz-box-sizing:border-box;
-    -webkit-box-sizing:border-box;
-    box-sizing:border-box;
+@mixin box_sizing {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 // miscellaneous
@@ -121,44 +128,43 @@ $gray-medium-light:#eaeaea;
 /*sidebar*/
 
 aside {
-	section.user_info {
-		margin-top: 20px;
-	}
-	section {
-		padding: 10px0;
-		margin-top: 20px;
-		&:first-child {
-			border: 0;
-			padding-top: 0;
-		}
-		span {
-			display: block;
-			margin-bottom: 3px;
-			line-height: 1;
-		}
-		h1 {
-			font-size: 1.4em;
-			text-align: left;
-			letter-spacing: -1px;
-			margin-bottom: 3px;
-			margin-top: 0px;
-		}
-	}
+    section.user_info {
+        margin-top: 20px;
+    }
+    section {
+        padding: 10px0;
+        margin-top: 20px;
+        &:first-child {
+            border: 0;
+            padding-top: 0;
+        }
+        span {
+            display: block;
+            margin-bottom: 3px;
+            line-height: 1;
+        }
+        h1 {
+            font-size: 1.4em;
+            text-align: left;
+            letter-spacing: -1px;
+            margin-bottom: 3px;
+            margin-top: 0px;
+        }
+    }
 }
 
 .gravatar {
-	float: left;
-	margin-right: 10px;
+    float: left;
+    margin-right: 10px;
 }
-
 
 .dropdown-toggle img {
     width: 20px;
-    height: 20px
+    height: 20px;
 }
 
 .gravatar_edit {
-	margin-top: 15px;
+    margin-top: 15px;
 }
 
 // Forms
@@ -167,74 +173,122 @@ input,
 textarea,
 select,
 .uneditable-input {
-	border: 1pxsolid#bbb;
-	width: 100%;
-	margin-bottom: 15px;
-	@include box_sizing;
+    border: 1pxsolid#bbb;
+    width: 100%;
+    margin-bottom: 15px;
+    @include box_sizing;
 }
 
 input {
-	height: auto!important;
+    height: auto !important;
 }
 
 #error_explanation {
-	color: red;
-	ul {
-		color: red;
-		margin: 0030px0;
-	}
+    color: red;
+    ul {
+        color: red;
+        margin: 0030px0;
+    }
 }
 
 .field_with_errors {
-	@extend.has-error;
-	.form-control {
-		color: $state-danger-text;
-	}
+    @extend.has-error;
+    .form-control {
+        color: $state-danger-text;
+    }
 }
 
 .checkbox {
     margin-top: -10px;
     margin-bottom: 10px;
     span {
-      margin-left: 20px;
-      font-weight: normal;
+        margin-left: 20px;
+        font-weight: normal;
     }
-  }
-  
-  #session_remember_me {
+}
+
+#session_remember_me {
     width: auto;
     margin-left: 0;
-  }
+}
 
-  // Post section navifgation bar
+// Post section navigation bar
 
-  .news-list {
-      margin-right: 5em;
-  }
+.news-list {
+    margin-right: 5em;
+}
 
-  .app-nav {
-      width: 80%;
-      display: flex;
-  }
+.app-nav {
+    width: 80%;
+    display: flex;
+}
 
-  .app-nav-item {
-      display: inline-block;
-      a {
-          margin: auto 0;
-          padding: .5em 1em;
-          font-size: 1.1em;
-          text-decoration: none;
-          color: white;
-      }
-  }
+.app-nav-item {
+    display: inline-block;
+    a {
+        margin: auto 0;
+        padding: 0.5em 1em;
+        font-size: 1.1em;
+        text-decoration: none;
+        color: white;
+    }
+}
 
-  .new_post {
-      width: 50%;
-      margin: 0 auto;
-  }
+.new_post {
+    width: 50%;
+    margin: 0 auto;
+}
 
-  .prof-img {
-      margin-top: 2em;
-      width: 150px;
-      height: 150px;
-  }
+.prof-img {
+    margin-top: 2em;
+    width: 150px;
+    height: 150px;
+}
+
+// Post section - Comments that appear on screen
+
+.comment-container {
+    display: grid;
+    grid-template-columns: 0.4fr 2.2fr 0.4fr;
+    grid-template-rows: 1fr;
+    gap: 1px 1px;
+    grid-template-areas: "image content reply";
+    margin: 1em 0;
+    background-color: white;
+    padding: 0.5em;
+}
+
+.image {
+    grid-area: image;
+    img {
+        height: 100px;
+        width: 100px;
+        border-radius: 10px;
+    }
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1px 1px;
+    grid-template-areas: "details" "content";
+    grid-area: content;
+}
+
+.details {
+    grid-area: details;
+}
+
+.content {
+    grid-area: content;
+}
+
+.reply {
+    grid-area: reply;
+    a {
+        font-size: 3em;
+        margin-top: .5em ;
+        text-decoration: none;
+    }
+}
