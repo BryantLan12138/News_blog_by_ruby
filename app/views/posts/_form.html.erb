@@ -11,7 +11,7 @@
     <%= f.label :content %>
     <%= f.text_area :content, :id=>"atextarea" ,class: 'form-control noresize', size: "50x20", placeholder:"Enter your post here..." %><br>
     <%= f.submit yield(:button_text), class: "btn btn-info" %>
-    <%= link_to "Cancel", news_path, class: "btn btn-warning"  %>
+    <%= link_to "Cancel", root_path, class: "btn btn-warning"  %>
 <% end %>
 
 
