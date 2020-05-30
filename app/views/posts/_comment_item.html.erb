@@ -1,7 +1,7 @@
 <div class="comment-container">
     <div class="image">
       <% if @post.user.image.present? %>
-        <%= image_tag(@post.user.image, :class => "avatar") %>
+        <%= image_tag(@post.user.image.to_s, :class => "avatar") %>
       <% else %>
         <%= image_tag "default.png", :class => "avatar" %>
       <% end %>
