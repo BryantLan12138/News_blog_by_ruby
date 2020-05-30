@@ -17,7 +17,7 @@
       </div>
       <div class="content">
         <% if comment.post_id == @post.id %>
-          <%= comment.content %>
+          <%=raw comment.content %>
         <% else %>
           reply @<%= Post.find(comment.post_id).user.name %>: <%= comment.content %>
         <% end %>
