@@ -1,0 +1,91 @@
+
+<div class="container">
+  <div class="card">
+  <div class = "card-body">
+      <% if @post.post_id.nil? %>
+        <h3><%= link_to @post.title, post_url(@post.id) %></h3>
+        
+        <div class="row">
+          <div class = "col-sm-1">
+            <span class="badge"> <%= @post.topic[0].name %> </span>
+          </div>
+          
+          <div class=" col-sm-10 text-muted text-right">
+              <span class="glyphicon glyphicon-comment"></span>
+              <%= @comments.count %>
+              
+              
+              <span class="glyphicon glyphicon-eye-open"></span>
+              <%= @post.view %>
+           </div>
+        </div>
+        
+      <% end %>
+    <p class = "showPost text-muted">
+      <% if @post.user.image.present? %>
+        <%= image_tag(@post.user.image.to_s, :class => "avatar_img") %>
+      <% else %>
+        <%= image_tag "default.png", :class => "avatar_img" %>
+      <% end %>
+      
+      
+      <%= link_to @post.user.name, user_url(@post.user.id), class:"text-muted" %>
+      <%= @post.created_at.to_date %>
+    </p>
+    
+    <p>
+      <%=raw @post.content %>
+    </p>
+    
+    <h3>Add Comments:</h3>
+    <%= form_for @comment do |f| %>
+        <%= render 'layouts/errorsPost' %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+        <%= f.hidden_field :topic_ids, :value => @post.topic[0].id %>
+        <%= f.hidden_field :superpid, :value => @post.superpid %>
+        <%= f.hidden_field :title, :value => @post.title %>
+        <%= f.text_area :content, :id => "reply", class: 'form-control noresize', size: "50x20", placeholder:"Enter your comment here..." %>
+        <%= f.submit "Add Comment", class: "btn btn-info" %>
+        <%= link_to "Cancel", root_path, class: "btn btn-warning"  %>
+    <% end %>
+
+    <script>
+      tinymce.init({
+        selector: 'textarea',
+        plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+        menubar: 'file edit view insert format tools table tc help',
+        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        menubar: true
+      });
+  </script>
+
+<h1>Comments</h1>
+
+<div class="comments-container">
+  <% if @post.post_id.nil? %>
+    <% @comments.each do |comment| %>
+      <%= render :partial => 'posts/comment_item', :locals => {:comment => comment} %>
+    <% end %>
+  <% end %>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+      tinymce.init({
+        selector: 'textarea',
+        plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+        menubar: 'file edit view insert format tools table tc help',
+        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        menubar: true
+      });
+
+
+</script>
