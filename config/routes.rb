@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   end
 
   get '/selected_topics', to: 'posts#selectedPost'
+  delete '/delete_post', to: 'posts#destroy'
   resources :users
   resources :posts do
     member do
