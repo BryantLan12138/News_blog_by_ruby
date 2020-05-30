@@ -32,17 +32,17 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  host = 'localhost：3000'
-  config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { :host => "localhost:3000", protocol: 'http' }
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.gmail.com',
+    :address        => 'smtp.sendgrid.com',
     :port           => '587',
     :authentication => :plain,
-    :user_name      => 'lubi980835699@gmail.com',
-    :password       => 'iloverails2020',
-    :domain         => 'gmail.com',
-    :enable_starttls_auto => true
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true,
+    :openssl_verify_mode  => 'none'
   }
 
   config.action_mailer.perform_caching = false

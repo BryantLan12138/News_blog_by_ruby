@@ -63,18 +63,20 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "myapp_#{Rails.env}"
   config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.delivery_method = :smtp
-    host = 'rad2020-sem1.herokuapp.com'
-    config.action_mailer.default_url_options = { host: host }
-    ActionMailer::Base.smtp_settings = {
-      :address        => 'smtp.gmail.com',
-      :port           => '587',
-      :authentication => :plain,
-      :user_name      => 'lubi980835699@gmail.com',
-      :password       => 'iloverails2020',
-      :domain         => 'gmail.com',
-      :enable_starttls_auto => true
-    }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  host = 'rad2020-assignment-two-v1.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.com',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true,
+    :openssl_verify_mode  => 'none'
+  }
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
