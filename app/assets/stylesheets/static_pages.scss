@@ -75,6 +75,9 @@
 
     .title { 
         grid-area: title; 
+        text-decoration: none;
+        font-size: 1.2em;
+        font-weight: bold;
     }
 
     .socials { 
@@ -82,6 +85,10 @@
     }
   }
   
+  .post-grid-container .title:hover {
+    color: rgb(205, 133, 0);
+  }  
+
 // Post navigation
 
 #horizontal-bar {

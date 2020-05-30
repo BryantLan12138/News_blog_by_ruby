@@ -1,22 +1,29 @@
 
-      <%= form_for post do |f| %>
-        <%= render 'layouts/errorsPost' %>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-        <%= f.hidden_field :post_id, :value => nil %>
-        <%= f.hidden_field :superpid, :value => Time.now.to_i %>
-        <%= f.label :topic %>
-        <%= f.collection_select(:topic_ids, Topic.all, :id, :name, {:include_blank => '=====Select====='}, class: 'form-control') %><br><br>
-        <%= f.label :title %>
-        <%= f.text_field :title, class: 'form-control', placeholder:"Enter your post title here..." %><br>
-        <%= f.label :content %>
-        <%= f.text_area :content, :id=>"atextarea" ,class: 'form-control noresize', size: "50x20", placeholder:"Enter your post here..." %><br>
-        <%= f.submit yield(:button_text), class: "btn btn-info" %>
-        <%= link_to "Cancel", news_path, class: "btn btn-warning"  %>
-    <% end %>
+<%= form_for post do |f| %>
+    <%= render 'layouts/errorsPost' %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :post_id, :value => nil %>
+    <%= f.hidden_field :superpid, :value => Time.now.to_i %>
+    <%= f.label :topic %>
+    <%= f.collection_select(:topic_ids, Topic.all, :id, :name, {:include_blank => '=====Select====='}, class: 'form-control') %><br><br>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control', placeholder:"Enter your post title here..." %><br>
+    <%= f.label :content %>
+    <%= f.text_area :content, :id=>"atextarea" ,class: 'form-control noresize', size: "50x20", placeholder:"Enter your post here..." %><br>
+    <%= f.submit yield(:button_text), class: "btn btn-info" %>
+    <%= link_to "Cancel", news_path, class: "btn btn-warning"  %>
+<% end %>
 
-    <script>
+
+
+<script>
       tinymce.init({
-        selector: '#atextarea'
-        encoding: 'xml'
-      });
-    </script>
+        selector: 'textarea',
+        plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        menubar: false
+    });
+</script>
