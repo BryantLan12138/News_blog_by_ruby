@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <%= link_to 'My profile', my_profile_user_path, remote: true %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'My Posts', my_posts_user_path, remote: true %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'My Comments', my_comments_user_path, remote: true %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Comments to me', commentstome_user_path, remote: true %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Settings', settings_user_path, remote: true %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-10 col-md-10 col-lg-10">
+      
+      <div id="active-tab">
+        <%= render 'users/my_profile' %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<%= render 'layouts/footer' %>

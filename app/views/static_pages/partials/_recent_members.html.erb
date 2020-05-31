@@ -1,0 +1,12 @@
+<div class="recent_member">
+    
+     <% if user.image.present? %>
+     <%= link_to image_tag(user.image.to_s, :class => "avatar_img"), user_url(user.id), class:"text-muted" %>
+    <% else %>
+    <%= link_to image_tag("default.png", :class => "avatar_img"), user_url(user.id), class:"text-muted" %>
+    <% end %>
+    <div class="avatar_name text-center">
+      <%= link_to user.name, user_url(user.id), class:"text-muted" %>
+      <span>(<%= user.logincount %>)</span>
+    </div>
+  </div>

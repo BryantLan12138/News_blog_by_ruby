@@ -1,0 +1,46 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Comment section
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 0.1fr .5fr .5fr;
+    gap: 1px 1px;
+    grid-template-areas: "Heading" "post_details" "Comments" "comment_form";
+}
+
+.Heading {
+    grid-area: Heading;
+    text-align: left;
+    h1 {
+        display: inline-block;
+    }
+}
+
+.post_details {
+    grid-area: post_details;
+}
+.social-span {
+    margin: 0 2em;
+    span {
+        margin-right: .5em;
+    }
+}
+
+.comments {
+    grid-area: Comments;
+}
+
+.comment_form {
+    grid-area: comment_form;
+}
+
+.postcontent {
+    margin-left: 2em;
+    padding-left: 1em;
+    border-left: 4px solid grey;
+    line-height: 2;
+}

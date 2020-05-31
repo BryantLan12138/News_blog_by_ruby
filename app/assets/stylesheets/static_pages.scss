@@ -1,0 +1,226 @@
+
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Page wide styles
+
+.recent-members,
+.topics,
+.top-posts,
+.links {
+    background-color: white;
+    padding: 1em;
+    margin: 2em 0;
+    h2 {
+        font-size: 2em;
+        padding-left: 1em;
+        border-left: 5px solid orangered;
+    }
+}
+
+// homepage main container
+
+.home-grid-container {
+    display: grid;
+    grid-template-columns: 1fr .66fr;
+    grid-template-rows: .3fr 1fr 1fr 1fr 1fr;
+    gap: 1px 1px;
+    grid-template-areas: "navbar navbar" "posts recent-members" "posts topics" "posts top-posts" "posts links";
+
+  }
+  
+  .posts { 
+      grid-area: posts;
+      margin-top: 2em;
+ }
+  
+  .navbar { 
+      grid-area: navbar; 
+  }
+  
+  .recent-members { grid-area: recent-members; }
+  
+  .topics { grid-area: topics; }
+  
+  .top-posts { grid-area: top-posts; }
+  
+  .links { grid-area: links; }
+
+// Post summary item on home page
+
+.post-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1px 1px;
+    grid-template-areas: "image title title title socials" 
+                         "image user_name date topic socials";
+
+    .image { 
+        grid-area: image; 
+    }
+
+    .user_name { 
+        grid-area: user_name; 
+    }
+
+    .date { 
+        grid-area: date; 
+    }
+
+    .topic { 
+        grid-area: topic; 
+    }
+
+    .title { 
+        grid-area: title; 
+        text-decoration: none;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .socials { 
+        grid-area: socials; 
+    }
+  }
+  
+  .post-grid-container .title:hover {
+    color: rgb(205, 133, 0);
+  }  
+
+// Post navigation
+
+#horizontal-bar {
+    list-style-type: none;
+    margin-top: 3em;
+    padding: 0;
+    overflow: hidden;
+    li {
+        float: left;
+        
+        margin-right: 1em;
+        a {
+            background-color: #FFA500;
+            border-radius: 5px;
+            color: white;
+            padding: 1.2em 1.5em;
+            text-decoration: none;
+            text-align: center;
+        }
+        a,
+        .search {
+            display:inline-block;
+            font-weight: bold;
+
+        }
+    }
+}
+
+#horizontal-bar a:hover {
+    background-color:#C57400;
+}
+
+#search {
+    margin-bottom: 0;
+    margin-left: 10em;
+    text-align: left;
+
+}
+
+.post-button {
+    margin-left: 10em;
+}
+  
+// Profile image (avatar)
+
+#rec-mem-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.avatar_img {
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+}
+
+.avatar_name {
+    width: 60px;
+}
+
+.recent_member {
+    display: inline-block;
+    margin: 0 20px;
+
+    img {
+        border-radius: 4px;
+    }
+}
+
+// Topics
+
+ 
+ .topic-button {
+     margin: .5em;
+     background-color:#FFA500;
+     border-radius:4px;
+     float:left;
+ }
+ 
+ .topic-button label {
+     float:left;
+     height: 2em;
+     width:8em;
+ }
+ 
+ .topic-button label span {
+     text-align:center;
+     padding: 0 1em;
+     display:block;
+ }
+ 
+ .topic-button label input {
+     display: none;
+ }
+ .topic-button span {
+     margin-top: .4em;
+    height: 100%;
+ }
+
+ .topic-button input:checked + span {
+     background-color:#C57400;
+     color:#fff;
+ }
+
+ // Home links section
+
+ .home-link {
+     margin: .5em;
+     padding: 1em 2em;
+     width: 120px;
+     background-color: #FFA500;
+     color: white;
+     font-size: 1.1em;
+     font-weight: bold;
+ }
+
+ // Post items on home page styling
+
+.post-grid-container {
+    margin: 0 1em;
+    padding: 1em;
+    background-color: white;
+    border-bottom: 2px solid grey;
+}
+
+.socials {
+    text-align: right;
+}
+
+// Hidden form
+
+form#topics_list,
+.submithidden{
+    display: none;
+}

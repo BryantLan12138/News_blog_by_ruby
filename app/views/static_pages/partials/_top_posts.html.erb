@@ -1,0 +1,18 @@
+<h2>Recent Posts</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Views</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @list.order("view ASC").first(6).each do |postSort| %>
+    <tr>
+      <td scope="row"><%= link_to postSort.title, post_url(postSort.id), class:"text-muted" %></td>
+      <td><span class="glyphicon glyphicon-eye-open"></span>
+        <%= postSort.view %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

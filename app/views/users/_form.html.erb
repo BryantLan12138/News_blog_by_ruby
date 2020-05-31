@@ -1,0 +1,28 @@
+
+
+<%= form_with(model: @user, local: true) do |f| %>
+    <%= render 'shared/error_messages', object: @user %>
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control' , placeholder:"Enter your email address"%>
+
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' , placeholder:"Enter a new password"%>
+
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: 'form-control' , placeholder:"Confirm password"%>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' , placeholder:"Enter your name"%>
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone, class: 'form-control', placeholder:"Enter your mobile number" %>
+
+    <%= f.label :city %>
+    <%= f.text_field :city, class: 'form-control', placeholder:"Enter your city" %>
+
+    <%= f.label :image, "Upload your avatar(optional)" %>
+    <%= f.file_field :image %>
+
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %> 
+    <p><%= link_to "Already a user?", login_path %></p>
+<% end %>

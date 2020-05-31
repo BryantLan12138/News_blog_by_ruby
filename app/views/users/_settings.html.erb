@@ -1,0 +1,104 @@
+<div class="row">
+
+
+
+
+  <div class="col-sm-9">
+    <br><br>
+    <div class="card">
+      <div class="card-body">
+        <ul id="myTab" class="nav nav-tabs">
+          <li class="active">
+            <a href="#PI" data-toggle="tab">
+              Personal Info
+            </a>
+          </li>
+          <li><a href="#ava" data-toggle="tab">Avatar</a></li>
+          <li><a href="#passwd" data-toggle="tab">Password</a></li>
+          <li><a href="#card" data-toggle="tab">Verification</a></li>
+
+        </ul>
+
+
+
+        <%= form_for(@user) do |f| %>
+        <%= render 'layouts/errors' %>
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane fade in active" id="PI">
+            <br>
+            <div class="showPost">You can modify your contact details below</div><br>
+
+            <%= f.label :name %>
+            <%= f.text_field :name, class: 'form-control', placeholder:"enter your name" %><br>
+            <%= f.label :email %>
+            <%= f.email_field :email, class: 'form-control', placeholder:"enter your email" %><br>
+            <%= f.label :phone, "Mobile" %>
+            <%= f.number_field :phone, class: 'form-control', placeholder:"enter your mobile" %><br>
+            <%= f.label :city, "City" %>
+            <%= f.text_field :city, class: 'form-control', placeholder:"enter your city" %><br>
+            <%= f.label :intro, "Personal Introduction" %>
+            <%= f.text_area :intro, class: 'form-control noresize', size: "20x10", placeholder: raw(@user.intro) %><br>
+
+          </div>
+          <div class="tab-pane fade" id="ava">
+            <br><br>
+            <%= f.label :avatar, "Upload your image" %><br>
+            <%= f.file_field :image %>
+            <br><br>
+            <% if @user.image_url.present? %>
+            <%= image_tag(@user.image_url, :class => "avatar2") %><br>
+            <% else %>
+            <%= image_tag "default.png", :class => "avatar2" %><br>
+            <% end %>
+
+          </div>
+          <div class="tab-pane fade" id="passwd">
+            <%= render 'layouts/errors' %>
+            <br><br>
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'form-control', placeholder:"enter your password" %><br>
+            <%= f.label :password_confirmation, "Confirmation"%>
+            <%= f.password_field :password_confirmation, class: 'form-control', placeholder:"repeat your password" %><br>
+
+
+          </div>
+          <div class="tab-pane fade" id="card">
+
+            <%= f.label :card, "Upload" %><br>
+            <%= f.file_field :card %>
+
+            <% if @user.card_url.present? %>
+            <%= image_tag(@user.card_url, :class => "idcard") %><br>
+            <% else %>
+            <%= image_tag "upload.png", :class => "avatar2" %><br>
+            <% end %>
+
+
+          </div>
+
+
+
+        </div>
+
+
+        <br><br>
+        <%= f.submit "confirm", class: "btn btn-success" %>
+        <% end %>
+        <br><br><br><br>
+
+
+
+
+      </div>
+      <script>
+        tinymce.init({
+          selector: 'textarea',
+          plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+          menubar: 'file edit view insert format tools table tc help',
+          toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
+          toolbar_mode: 'floating',
+          tinycomments_mode: 'embedded',
+          tinycomments_author: 'Author name',
+          menubar: true
+        });
+      </script>
