@@ -25,13 +25,43 @@ We reached 90+ level at the end
 #### Tu Lan:
 May4-May10
 ![May4-May10](timesheet/May4-May10.png)
+May 5: Setup the project <br/>
+May 6: Start developing session functions <br/>
+May 8: Achieved session function with user login/logout <br/>
+May 10: Learn & reaserch about sessions for using in checkbox, 
+from tutorial sheet and stackoverflow 
+<br/>
+<br/>
 May11-May17
 ![May11-May17](timesheet/May11-May17.png)
+May 11: Start authorization, created edit function for user to modify their account <br/>
+May 13: Finished edit function, also passed the test <br/>
+May 15: Added signup form as partial file to be rendered later on <br/>
+May 16: Headed to User index on homepage, research on how to render it by partial file <br/>
+<br/>
 May18-May24
 ![May18-May24](timesheet/May18-May24.png)
+May 21: Reaserch on rails syntax, modify user table on schema.rb <br/>
+May 22: Created Posts table with comments in same table on scehma.rb <br/>
+May 23: Created Topics table, created corresponding controller for user/post/topic <br/>
+May 24: Fetch the 12 users, posts, topics, links on homepage, collaborate with teamate  <br/>
+<br/>
 May25-May31
 ![May25-May31](timesheet/May25-31.png)
-
+May 25: Created setting page for users, setting the pages routes with the three buttons(recent posts, selected post(#for now), settings), implemented topics as filter for corresponding posts. Created show page for posts for each post to show the content, created original text filed for upcoming comment system.  
+<br/>
+May 26: Minor fix CSS for homepage, fetched recent posts around 30 days on leftside,specifed only top 6 posts on right side, updated header file with drop down menu. Finished craete function for posts to create a post on homepage. Add routes for user name and user icon with corresponding destination, created view count, and timestamps for posts created.  <br/> 
+<br/>
+May 27: Fixed CSS for current pages, updated routes.rb, created users profile page where fetches current user's post and comment(not done yet). Hands on to deploy the project on heroku but failed  <br/>
+<br/>
+May 28: Created two image uploader for users image and upcoming card verification, acheived comment functions which uses same model as posts. Created reply button for each of comment to make it nested. Learn Ajax for selected post button to fetch different data based on its url. Updates user profile page, update user signup page
+<br/><br/>
+May 29: Created remeber me checkbox with cookies, created setting page for user with Ajax, created an inline link form for user to modify account credentail/uplaod avatar/modify password/card varification, work on password reset, fixed minor bugs and error found in team meeting. Updated settings in development.rb and production.rb for mailer system, created view page and controller for password reset, finished reaserch function by Ajax, enhance the dropdown menu on header file to show the two hottest topics.
+<br/><br/>
+May 30: Finished delete function for each of post from user profile page. Change the routes for user icon from post and recent member partial file to be clickble. Fixed minor bug on header file. Investigate on rich text editor.
+<br/><br/>
+May 31: Update personal timesheet, modified readme.
+<br/><br/>
 #### Daniel Dominique:
 
 User|Project|Description|Start date|Start time|End date|End time|Duration|
