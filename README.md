@@ -20,7 +20,17 @@ Tu Lan - s3652591
 We reacched 90+ level at the end
 
 # Time sheet
+#### Tu Lan:
+May4-May10
+![May4-May10](timesheet/May4-May10.png)
+May11-May17
+![May11-May17](timesheet/May11-May17.png)
+May18-May24
+![May18-May24](timesheet/May18-May24.png)
+May25-May31
+![May25-May31](timesheet/May25-31.png)
 
+#### Daniel Dominique:
 
 # Heroku URL and last deployment log
 https://rad2020-assignment-two-v1.herokuapp.com/
