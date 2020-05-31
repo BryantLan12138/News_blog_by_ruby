@@ -17,7 +17,7 @@ Daniel Dominique - s3745409
 Tu Lan - s3652591
 
 # The highest level we reached 
-We reacched 90+ level at the end
+We reached 90+ level at the end
 
 # Time sheet
 #### Tu Lan:

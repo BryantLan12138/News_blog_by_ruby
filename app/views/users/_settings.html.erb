@@ -1,8 +1,5 @@
+<% provide(:title, "Settings") %>
 <div class="row">
-
-
-
-
   <div class="col-sm-9">
     <br><br>
     <div class="card">
@@ -46,9 +43,9 @@
             <%= f.file_field :image %>
             <br><br>
             <% if @user.image_url.present? %>
-            <%= image_tag(@user.image_url, :class => "avatar2") %><br>
+            <%= image_tag(@user.image_url, :class => "veri_img") %><br>
             <% else %>
-            <%= image_tag "default.png", :class => "avatar2" %><br>
+            <%= image_tag "default.png", :class => "veri_img" %><br>
             <% end %>
 
           </div>
@@ -68,9 +65,9 @@
             <%= f.file_field :card %>
 
             <% if @user.card_url.present? %>
-            <%= image_tag(@user.card_url, :class => "idcard") %><br>
+            <%= image_tag(@user.card_url, :class => "veri_img") %><br>
             <% else %>
-            <%= image_tag "upload.png", :class => "avatar2" %><br>
+            <%= image_tag "upload.png", :class => "veri_img" %><br>
             <% end %>
 
 

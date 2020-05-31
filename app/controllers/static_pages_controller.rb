@@ -15,7 +15,18 @@ class StaticPagesController < ApplicationController
     @topics = Topic.all
   end
   
-  
+  def news
+    if params[:keywords].nil?
+      @posts = Post.where(post_id: nil).order("created_at DESC")
+      @pervious_input = nil
+    else
+      @posts = Post.where("post_id IS NULL AND title like ?", "%#{params[:keywords].to_s}%").order("view DESC")
+      @pervious_input = params[:keywords].to_s
+    end
+    
+    @list = Post.where(post_id: nil).order("view DESC")
+    @topics = Topic.all
+  end
 
   private
   
