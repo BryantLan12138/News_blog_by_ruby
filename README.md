@@ -138,6 +138,139 @@ s3745409|RAD|updating rich text editor|30/5/20|22:33:56|30/5/20|22:57:35|0:23:39
 s3745409|RAD|Fixed editor locations|30/5/20|22:59:20|30/5/20|23:05:44|0:06:24|
 s3745409|RAD|Merge branch 'development' of github.com:s3745409/RAD2020_S3652591_S3745409 into development|30/5/20|23:08:42|30/5/20|23:24:50|0:16:08|
 s3745409|RAD|Updted ruby version|30/5/20|23:27:21|30/5/20|23:29:11|0:01:50|
-
+TOTAL|||||||42:07:17|
 # Heroku URL and last deployment log
+
+## Application URL
+
 https://rad2020-assignment-two-v1.herokuapp.com/
+
+## Last Deployment Log
+
+-   -----> Ruby app detected
+-   -----> Installing bundler 1.17.3
+-   -----> Removing BUNDLED WITH version in the Gemfile.lock
+-   -----> Compiling Ruby/Rails
+-   -----> Using Ruby version: ruby-2.5.8
+-   -----> Installing dependencies using bundler 1.17.3
+-        Running: bundle install --without development:test --path vendor/bundle --binstubs vendor/bundle/bin -j4 --deployment
+-        The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x86-mswin32, x64-mingw32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java`.
+-        Using rake 13.0.1
+-        Using concurrent-ruby 1.1.6
+-        Using i18n 1.8.2
+-        Using minitest 5.14.0
+-        Using thread_safe 0.3.6
+-        Using tzinfo 1.2.7
+-        Using activesupport 5.2.4.2
+-        Using builder 3.2.4
+-        Using erubi 1.9.0
+-        Using mini_portile2 2.4.0
+-        Using nokogiri 1.10.9
+-        Using rails-dom-testing 2.0.3
+-        Using crass 1.0.6
+-        Using loofah 2.5.0
+-        Using rails-html-sanitizer 1.3.0
+-        Using actionview 5.2.4.2
+-        Using rack 2.2.2
+-        Using rack-test 1.1.0
+-        Using actionpack 5.2.4.2
+-        Using nio4r 2.5.2
+-        Using websocket-extensions 0.1.4
+-        Using websocket-driver 0.7.1
+-        Using actioncable 5.2.4.2
+-        Using globalid 0.4.2
+-        Using activejob 5.2.4.2
+-        Using mini_mime 1.0.2
+-        Using mail 2.7.1
+-        Using actionmailer 5.2.4.2
+-        Using activemodel 5.2.4.2
+-        Using arel 9.0.0
+-        Using activerecord 5.2.4.2
+-        Using mimemagic 0.3.5
+-        Using marcel 0.3.3
+-        Using activestorage 5.2.4.2
+-        Using public_suffix 4.0.4
+-        Using addressable 2.7.0
+-        Using execjs 2.7.0
+-        Using autoprefixer-rails 9.7.6
+-        Using bcrypt 3.1.13
+-        Using msgpack 1.3.3
+-        Using bootsnap 1.4.6
+-        Using ffi 1.12.2
+-        Using sassc 2.3.0
+-        Using bootstrap-sass 3.4.1
+-        Using bundler 1.17.3
+-        Using mini_magick 4.10.1
+-        Using ruby-vips 2.0.17
+-        Using image_processing 1.10.3
+-        Using carrierwave 2.1.0
+-        Using coffee-script-source 1.12.2
+-        Using coffee-script 2.4.1
+-        Using method_source 1.0.0
+-        Using thor 1.0.1
+-        Using railties 5.2.4.2
+-        Using coffee-rails 4.2.2
+-        Using font-awesome-rails 4.7.0.5
+-        Using jbuilder 2.10.0
+-        Using jquery-rails 4.3.5
+-        Using pg 1.2.3
+-        Using puma 3.12.4
+-        Using sprockets 3.7.2
+-        Using sprockets-rails 3.2.1
+-        Using rails 5.2.4.2
+-        Using rb-fsevent 0.10.4
+-        Using rb-inotify 0.10.1
+-        Using sass-listen 4.0.0
+-        Using sass 3.7.4
+-        Using tilt 2.0.10
+-        Using sass-rails 5.1.0
+-        Using turbolinks-source 5.2.0
+-        Using turbolinks 5.2.1
+-        Using uglifier 4.2.0
+-        Bundle complete! 26 Gemfile dependencies, 72 gems now installed.
+-        Gems in the groups development and test were not installed.
+-        Bundled gems are installed into `./vendor/bundle`
+-        Bundle completed (0.46s)
+-        Cleaning up the bundler cache.
+-        The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x86-mswin32, x64-mingw32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java`.
+-   -----> Installing node-v10.15.3-linux-x64
+-   -----> Detecting rake tasks
+-   -----> Preparing app for Rails asset pipeline
+-        Running: rake assets:precompile
+-        Yarn executable was not detected in the system.
+-        Download Yarn at https://yarnpkg.com/en/docs/install
+-        I, [2020-05-31T07:08:27.997662 #276]  INFO -- : Writing /tmp/build_a04200ecfc7649b06c82319773048d47/public/assets/application-e18572a664528e4b133fedab53cb1b3c9f7ee25c81a02a61923489c7f16a8938.css
+-        I, [2020-05-31T07:08:27.998220 #276]  INFO -- : Writing /tmp/build_a04200ecfc7649b06c82319773048d47/public/assets/application-e18572a664528e4b133fedab53cb1b3c9f7ee25c81a02a61923489c7f16a8938.css.gz
+-        Asset precompilation completed (8.38s)
+-        Cleaning assets
+-        Running: rake assets:clean
+-        I, [2020-05-31T07:08:29.560417 #287]  INFO -- : Removed application-67be93943f615ff3ceb099e4416dd6ed2bf16e1e61cc7f7c0352e44a2bed9839.css
+-   -----> Detecting rails configuration
+- ###### WARNING:
+-        You set your `config.active_storage.service` to :local in production.
+-        If you are uploading files to this app, they will not persist after the app
+-        is restarted, on one-off dynos, or if the app has multiple dynos.
+-        Heroku applications have an ephemeral file system. To
+-        persist uploaded files, please use a service such as S3 and update your Rails
+-        configuration.
+-        For more information can be found in this article:
+-          https://devcenter.heroku.com/articles/active-storage-on-heroku
+- ###### WARNING:
+-        We detected that some binary dependencies required to
+-        use all the preview features of Active Storage are not
+-        present on this system.
+-        For more information please see:
+-          https://devcenter.heroku.com/articles/active-storage-on-heroku
+
+- ###### WARNING:
+-        No Procfile detected, using the default web server.
+-        We recommend explicitly declaring how to boot your server process via a Procfile.
+-        https://devcenter.heroku.com/articles/ruby-default-web-server
+-   -----> Discovering process types
+-        Procfile declares types     -> (none)
+-        Default types for buildpack -> console, rake, web
+-   -----> Compressing...
+-        Done: 59.2M
+-   -----> Launching...
+-        Released v20
+-        https://rad2020-assignment-two-v1.herokuapp.com/ deployed to Heroku
