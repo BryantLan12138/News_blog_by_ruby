@@ -5,7 +5,9 @@ git clone the project
 
 ## Building the rails App
 
-1. Run `docker-compose build` after every Gemfile change or to build the containers
+1. Run `docker-compose build` after every Gemfile change or to build the containers.
+
+  **Note: This app has been run and tested on RUBY 2.5.8**
 
 ## Running the rails App
 1. Run `docker-compose up` to run the rails app
